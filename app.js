@@ -17,6 +17,7 @@ db.on("error", function(err) {
   console.log(err);
 });
 
+// For testing
 app.get("/", (req, res) => {
   res.send("hello world");
 });
