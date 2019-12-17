@@ -17,6 +17,10 @@ db.on("error", function(err) {
   console.log(err);
 });
 
+// Route Files
+let doctors = require("./routes/doctors");
+app.use("/doctors", doctors);
+
 // For testing
 app.get("/", (req, res) => {
   res.send("hello world");
