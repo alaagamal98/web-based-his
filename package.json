@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/sbme-tutorials/sbe306-2019porject-sbe306-2021-team07#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.8.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
