@@ -5,11 +5,13 @@ const uniqueValidator = require("mongoose-unique-validator");
 const DoctorSchema = mongoose.Schema({
   number: {
     type: Number,
-    required: true
+    required: true,
+    unique: true
   },
   ssn: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   first_name: {
     type: String,
@@ -25,7 +27,8 @@ const DoctorSchema = mongoose.Schema({
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   gender: {
     type: String,
@@ -44,11 +47,12 @@ const DoctorSchema = mongoose.Schema({
     required: true
   },
   patients: {
-    type: [mongoose.Types.ObjectId],
-    ref: "Patient"
+    type: [{ type: Schema.Types.ObjectId, ref: "Patient" }]
   }
 });
 
+// To add additional functionality to schema
 schema.plugin(uniqueValidator);
+
 // Compile our model
 const Doctor = (module.exports = mongoose.model("Doctor", DoctorSchema));
