@@ -42,13 +42,13 @@ const PatientSchema = mongoose.Schema({
     required: true
   },
   doctors: {
-    type: [{ type: Schema.Types.ObjectId, ref: "Doctor" }]
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Doctor" }]
   }
   // not complete
 });
 
 // To add additional functionality to schema
-schema.plugin(uniqueValidator);
+PatientSchema.plugin(uniqueValidator);
 
 // Compile our model
 const Patient = (module.exports = mongoose.model("Patient", PatientSchema));
