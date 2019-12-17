@@ -39,7 +39,7 @@ const DoctorSchema = mongoose.Schema({
     required: true
   },
   phone_number: {
-    type: [Number], // array of numbers
+    type: [{ type: Number }], // array of numbers
     required: true
   },
   password: {

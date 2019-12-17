@@ -34,7 +34,7 @@ const PatientSchema = mongoose.Schema({
     required: true
   },
   phone_number: {
-    type: [Number],
+    type: [{ type: Number }],
     required: true
   },
   password: {
