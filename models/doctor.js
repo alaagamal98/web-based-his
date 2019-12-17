@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
 
 // Define a schema
 const DoctorSchema = mongoose.Schema({
@@ -48,5 +49,6 @@ const DoctorSchema = mongoose.Schema({
   }
 });
 
+schema.plugin(uniqueValidator);
 // Compile our model
 const Doctor = (module.exports = mongoose.model("Doctor", DoctorSchema));
