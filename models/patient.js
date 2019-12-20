@@ -1,10 +1,9 @@
 const Joi = require('joi');
 Joi.objectId= require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
-const uniqueValidator = require("mongoose-unique-validator");
 
 // Define a schema
-const PatientSchema = mongoose.Schema({
+const Patient = mongoose.model('Patient', new mongoose.Schema({
   
   ssn: {
     type: String,
@@ -64,7 +63,7 @@ const PatientSchema = mongoose.Schema({
   },
   
   // not complete
-});
+}));
 // movie: {
 //   type: new mongoose.Schema({
 //     title: {
@@ -92,7 +91,7 @@ function validatePatient(patient) {
 }
 
 
-exports.patient = PatientSchema; 
+exports.Patient = Patient; 
 exports.validate = validatePatient;
 
 // To add additional functionality to schema

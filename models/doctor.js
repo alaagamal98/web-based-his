@@ -1,10 +1,8 @@
 const Joi = require('joi');
 Joi.objectId= require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
-const uniqueValidator = require("mongoose-unique-validator");
-
 // Define a schema
-const DoctorSchema = mongoose.Schema({
+const Doctor = mongoose.model('Doctor', new mongoose.Schema({
   // number: {
   //   type: Number,
   //   required: true,
@@ -55,17 +53,8 @@ const DoctorSchema = mongoose.Schema({
     required: true,
     minlenght: 8,
     unique:true
-  },
-  patients: { // msh hna mfrod tkon patient ??
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Patient" }]
-  },
-  manager: { // same??
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Manager" }]
-  },
-  medicine: {// same??
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Medicine" }]
   }
-});
+}));
 
 function validateDoctor(doctor) {
   const schema = {
@@ -85,7 +74,7 @@ function validateDoctor(doctor) {
 }
 
 
-exports.Doctor = DoctorSchema; 
+exports.Doctor = Doctor; 
 exports.validate = validateDoctor;
 
 

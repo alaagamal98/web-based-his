@@ -1,25 +1,24 @@
 const Joi = require('joi');
 Joi.objectId= require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
-const uniqueValidator = require("mongoose-unique-validator");
-const RoomSchema = mongoose.Schema({
 
-vacancyOfRoom:{
-    type: Boolean,
-    requied: true
-},
-numberOfEquipment :{
-     type:Number,
-     required: true
-},
+const Room = mongoose.model('Room', new mongoose.Schema({
+    vacancyOfRoom:{
+        type: Boolean,
+        requied: true
+    },
+    
+    numberOfEquipment :{
+        type:Number,
+        required: true
+    },
 
-nameOfEquipment:{
-    type: [{String}],
-    required: true
-}
+    nameOfEquipment:{
+        type: [{String}],
+        required: true
+    }
+}));
 
-
-})
 function validateRoom(room) {
     const schema = {
         //de al data ali h5lii user ed5lha
@@ -33,6 +32,6 @@ function validateRoom(room) {
     }
     
     
-    exports.room = RoomSchema; 
+    exports.Room = Room; 
     exports.validate = validateRoom;
     

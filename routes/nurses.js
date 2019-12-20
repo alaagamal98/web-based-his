@@ -1,5 +1,5 @@
-const {Eng, validateEng} = require('../models/eng'); 
-const {Manger, validateManger} = require('../models/manger');
+const {Eng, validateEng} = require('../models/eng.js'); 
+const {Manger, validateManger} = require('../models/manger.js');
 const {Equipment, validateEquipment} = require('../models/equipment');
 const {Nurse, validateNurse} = require('../models/nurse');
 const {Doctor, validateDoctor} = require('../models/doctor');
