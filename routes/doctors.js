@@ -33,7 +33,23 @@ router.post("/add_doctor", async (req, res) => {
 
 // delete
 
-// update
+async function getDoctors() {
+  return await Doctor;
+}
+
+
+router.get('/', (req, res) => {
+	const doctors = getDoctors();
+  res.send(doctors);
+});
+
+
+router.get('/:id', (req, res) => {
+	const doctors = getDoctors();
+  const doctor = doctors.find(c => c.id === parseInt(req.params.id));
+  if (!doctor) return res.status(404).send('The doctor with the given ID was not found.');
+  res.send(doctor);
+});
 
 // read
 

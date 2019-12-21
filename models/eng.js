@@ -1,11 +1,10 @@
+const config = require('config');
+const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 Joi.objectId= require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
 
-// Eng Schema
-const Eng = mongoose.model(
-  "Eng",
-   new mongoose.Schema({
+const engSchema =new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
@@ -88,7 +87,16 @@ const Eng = mongoose.model(
         unique: true
       },
     }
-  }));
+  })
+  
+  engSchema.methods.generateAuthToken = function() { 
+  const token = jwt.sign({ _id: this._id}, config.get('jwtPrivateKey'));
+  return token;
+}
+
+
+// Eng Schema
+const Eng = mongoose.model('Eng', engSchema);
 
   function validateEng(eng) {
     const schema = Joi.object().keys({

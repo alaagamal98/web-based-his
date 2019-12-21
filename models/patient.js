@@ -1,11 +1,11 @@
+const config = require('config');
+const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 Joi.objectId= require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
 
-// Define a schema
-const Patient = mongoose.model(
-  "Patient",
-   new mongoose.Schema({
+
+const patientSchema = new mongoose.Schema({
   
   ssn: {
     type: String,
@@ -115,7 +115,19 @@ const Patient = mongoose.model(
     },
   }
  
-  }));
+  });
+  
+  
+
+
+    
+    patientSchema.methods.generateAuthToken = function() { 
+  const token = jwt.sign({ _id: this._id}, config.get('jwtPrivateKey'));
+  return token;
+}
+// Define a schema
+const Patient = mongoose.model('Patient', patientSchema);
+
 
 function validatePatient(patient) {
   const schema =Joi.object().keys({

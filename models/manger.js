@@ -1,11 +1,10 @@
+const config = require('config');
+const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 Joi.objectId= require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
 
-// Manger Schema
-const Manger = mongoose.model(
-  "Manger", 
-  new mongoose.Schema({
+const mangerSchema = new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
@@ -69,9 +68,15 @@ const Manger = mongoose.model(
       type:mongoose.Schema.Types.ObjectId,
       ref:'Feedback'
     }
+  })
+  
+    mangerSchema.methods.generateAuthToken = function() { 
+  const token = jwt.sign({ _id: this._id}, config.get('jwtPrivateKey'));
+  return token;
+}
 
-    
-  }));
+// Manger Schema
+const Manger = mongoose.model('Manger', mangerSchema);
   
   function validateManger(manger) {
     const schema =Joi.object().keys({
