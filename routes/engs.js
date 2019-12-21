@@ -5,7 +5,15 @@ const { Eng, validateEng } = require("../models/eng");
 
 // routes 
 
+//delete
+router.delete('/:id', async (req, res) => {
+  const eng = await Eng.findByIdAndRemove(req.params.id);
 
+  if (!eng) return res.status(404).send('The eng with the given ID was not found.');
+
+  res.send(eng);
+});
+//.....................
 
 async function getEngs() {
   return await Eng;
