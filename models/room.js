@@ -2,10 +2,13 @@ const Joi = require('joi');
 Joi.objectId= require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
 
-const Room = mongoose.model('Room', new mongoose.Schema({
+const Room = mongoose.model(
+    "Room",
+     new mongoose.Schema({
     vacancyOfRoom:{
-        type: Boolean,
-        requied: true
+        type: String,
+        requied: true,
+        enum:['Empty', 'Full']
     },
     
     numberOfEquipment :{
@@ -14,19 +17,22 @@ const Room = mongoose.model('Room', new mongoose.Schema({
     },
 
     nameOfEquipment:{
-        type: [{String}],
+        type: [String],
         required: true
     }
 }));
 
 function validateRoom(room) {
-    const schema = {
+    const schema =Joi.object().keys({
         //de al data ali h5lii user ed5lha
-        RoomvacancyOfRoom: Joi.Boolean().required(),
-        RoomnumberOfEquipment: Joi.Number().required(),
-        RoomnameOfEquipment: Joi.String([]).required(),
+        RoomvacancyOfRoom: Joi.boolean()
+        .required(),
+        RoomnumberOfEquipment: Joi.number()
+        .required(),
+        RoomnameOfEquipment: Joi.ntring()
+        .required(),
        
-    };
+    });
     
     return Joi.validate(room, schema);
     }

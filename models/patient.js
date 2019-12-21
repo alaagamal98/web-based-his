@@ -13,14 +13,14 @@ const patientSchema = new mongoose.Schema({
     unique: true,
     lenght: 14
   },
-  first_name: {
+  firstName: {
     type: String,
     required: true,
     minlenght: 2,
     maxlenght: 12
   },
   
-  last_name: {
+  lastName: {
     type: String,
     required: true,
     minlenght: 2,
@@ -28,16 +28,19 @@ const patientSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true
 
   },
   gender: {
     type: String,
-    required: true
+    required: true,
+    enum: ['Male', 'Female']
   },
   Dep_phone_number: {
     type: [{ type: Number }],
-    required: true
+    required: true,
+    minlenght: 11
   },
   password: {
     type: String,
@@ -57,15 +60,65 @@ const patientSchema = new mongoose.Schema({
     type:Date,
     required: true
   },
-  doctors: {  //same??
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Doctor" }]
+
+  Medicine:{
+    type:mongoose.Schema.Types.ObjectId,
+      ref:'Medicine',
+    date: {
+      type:[ Date],
+      required: true
   },
-  medicine: {//same??
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Medicine" }]
+  dose: {
+      type: String,   
+      required: true
   },
+  price: {
+    type: Number,
+    required: true  
+   },
+   quantity:{
+    type:Number,
+    required: true
+   }
+  },
+  Nurse:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'Nurse',
+    firstName: {
+      type: String,
+      required: true,
+      minlength: 2,
+      maxlength: 50
+    },
+    lastName: {
+      type: String,
+      required: true,
+      minlength: 2,
+      maxlength: 50
+  },
+},
+  Doctor:{
+    type:mongoose.Schema.Types.ObjectId,
+      ref:'Doctor',
+    firstName:{ 
+      type: String,
+      required: true,
+      minlenght: 2,
+      maxlenght: 12
+    },
+    
+    lastName:{ 
+      type: String,
+      required: true,
+      minlenght: 2,
+      maxlenght: 12
+    },
+  }
+ 
+  });
   
-  // not complete
-})
+  
+
 
     
     patientSchema.methods.generateAuthToken = function() { 
@@ -74,28 +127,43 @@ const patientSchema = new mongoose.Schema({
 }
 // Define a schema
 const Patient = mongoose.model('Patient', patientSchema);
-// movie: {
-//   type: new mongoose.Schema({
-//     title: {
-//       type: String,
-//       required: true,
-//       trim: true, 
-//       minlength: 5,
-//       maxlength: 255
-//     },
+
 
 function validatePatient(patient) {
-  const schema = {
+  const schema =Joi.object().keys({
     //de al data ali h5lii user ed5lha
-    ssn:Joi.String().required().unique().lenght(14),
-    first_name: Joi.String().required().minlenght(2).maxlenght(12),
-    last_name: Joi.String().required().minlenght(2).maxlenght(12),
-    email: Joi.String().required(),
-    gender: Joi.String().required(),
-    Dep_phone_number :Joi.String([]).required(),
-    password: Joi.String().required().lenght(8).unique(),
-    history: Joi.String().required(),
-  };
+    PatientSsn:Joi.string()
+    .required()
+    //.unique()
+    .lenght(14),
+    PatientfirstName: Joi.string()
+    .required()
+    .min(2)
+    .max(12),
+    PatientlastName: Joi.string()
+    .required()
+    .min(2)
+    .max(12),
+    PatientEmail: Joi.String()
+    .required(),
+    //.unique(),
+    PatientGender: Joi.string()
+    .required()
+    .enum(),
+    PatientDep_phone_number :Joi.string()
+    .required()
+    .min(11),
+    PatientPassword: Joi.string()
+    .required()
+    .lenght(8),
+    //.unique(),
+    PatientHistory: Joi.String()
+    .required(),
+    PatientEntrydate: Joi.date()
+    .required(),
+    PatientExitdate: Joi.date()
+    .required()
+  });
 
   return Joi.validate(patient, schema);
 }

@@ -1,16 +1,17 @@
 const config = require('config');
 const jwt = require('jsonwebtoken');
 const Joi = require('joi');
+Joi.objectId= require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
 
 const mangerSchema = new mongoose.Schema({
-    first_name: {
+    firstName: {
       type: String,
       required: true,
       minlength: 2,
       maxlength: 50
     },
-    last_name: {
+    lastName: {
       type: String,
       required: true,
       minlength: 2,
@@ -20,8 +21,8 @@ const mangerSchema = new mongoose.Schema({
       type: String,
       required: true,
       unique: true,
-      minlength: 14,
-      maxlength: 14
+      length: 14
+      
     },
     email: {
       type: String,
@@ -30,7 +31,8 @@ const mangerSchema = new mongoose.Schema({
     },
     gender: {
       type: String,
-      required: true
+      required: true,
+      enum:['Male','Female']
     },
     salary: {
       type: Number,
@@ -38,20 +40,33 @@ const mangerSchema = new mongoose.Schema({
     },
     phone_number: {
       type: [{ type: Number }], // array of numbers
-      required: true
+      required: true,
+      minlength: 11
     },
     password: {
       type: String,
-      required: true
+      required: true,
+      minlength: 8,
+      unique: true
     },
-    Doctor: {
-      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Doctor" }]
-    },
-    Eng:{
-      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Eng" }]
+
+    Doctor:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'Doctor'
     },
     Nurse:{
-      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Nurse" }]
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'Nurse',
+      
+    },
+    Eng:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'Eng',
+    
+    },
+    Feedback:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'Feedback'
     }
   })
   
@@ -64,15 +79,35 @@ const mangerSchema = new mongoose.Schema({
 const Manger = mongoose.model('Manger', mangerSchema);
   
   function validateManger(manger) {
-    const schema = {
-      first_name: Joi.string().min(2).max(50).required(),
-      last_name: Joi.string().min(2).max(50).required(),
-      gender: Joi.string().required(),
-      salary: Joi.string().required(),
-      email: Joi.string().email({ minDomainAtoms: 2 }).required(),
-      phone_number: Joi.number().min(11).required(),
-      password: Joi.string().min(0).required()
-    };
+    const schema =Joi.object().keys({
+      firstName: Joi.string()
+      .min(2)
+      .max(50)
+      .required(),
+      lastName: Joi.string()
+      .min(2)
+      .max(50)
+      .required(),
+      ssn: Joi.string()
+      .required()
+      //.unique()
+      .length(14),
+      email: Joi.string()
+      .required(),
+      //.unique(),
+      gender: Joi.string()
+      .required()
+      .enum(),
+      salary: Joi.number()
+      .required(),
+      phone_number: Joi.number()
+      .min(11)
+      .required(),
+      password: Joi.string()
+      .min(8)
+      .required(),
+      //.unique()
+    });
   
     return Joi.validate(manger, schema);
   }

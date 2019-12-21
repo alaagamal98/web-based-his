@@ -6,11 +6,6 @@ const mongoose = require("mongoose");
 
 // Define a schema
 const doctorSchema = new mongoose.Schema({
-  // number: {
-  //   type: Number,
-  //   required: true,
-  //   unique: true
-  // },
   ssn: {
     type: String,
     required: true,
@@ -21,14 +16,14 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  first_name: {
+  firstName: {
     type: String,
     required: true,
     minlenght: 2,
     maxlenght: 12
   },
 
-  last_name: {
+  lastName: {
     type: String,
     required: true,
     minlenght: 2,
@@ -37,11 +32,14 @@ const doctorSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    minlenght: 2,
+    maxlenght: 12
   },
   gender: {
     type: String,
-    required: true
+    required: true,
+    enum: ["Male", "Female"]
   },
   salary: {
     type: Number,
@@ -56,6 +54,83 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlenght: 8
+  },
+
+  Patient: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Patient",
+    firstName: {
+      type: String,
+      required: true
+    },
+    email: {
+      type: String,
+      required: true
+    },
+    password: {
+      type: String,
+      required: true,
+      minlenght: 8,
+      unique: true
+    },
+    history: {
+      type: String,
+      required: true
+    },
+    gender: {
+      type: String,
+      required: true,
+      enum: ["Male", "Female"]
+    }
+  },
+  Medicine: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Medicine",
+    name: {
+      type: [String],
+      required: true
+    },
+    dose: {
+      type: String,
+      required: true
+    },
+    replacements: {
+      type: [String],
+      required: true
+    }
+  },
+  Manger: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Manger",
+
+    firstName: {
+      type: String,
+      required: true,
+      minlength: 2,
+      maxlength: 50
+    },
+    lastName: {
+      type: String,
+      required: true,
+      minlength: 2,
+      maxlength: 50
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    Room: {
+      // msh mot2kda de t5os dr wla la2??
+
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Room",
+      vacancyOfRoom: {
+        type: String,
+        requied: true,
+        enum: ["Empty", "Full"]
+      }
+    }
   }
 });
 
