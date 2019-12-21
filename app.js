@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+// const flash = require("connect-flash");
+const bodyParser = require("body-parser");
 
 // Connect to database
 // P.S create a database called "icu" first
@@ -18,6 +20,16 @@ db.on("error", function(err) {
 });
 
 // Route Files
+// let doctors = require("./routes/doctors");
+// app.use("/doctors", doctors);
+
+// let user = require("./routes/user");
+// app.use("/user", user);
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// let user = require("./routes/user");
+// app.use("/user", user);
 let doctors = require("./routes/doctors");
 app.use("/doctors", doctors);
 
