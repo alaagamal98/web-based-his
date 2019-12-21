@@ -44,10 +44,10 @@ router.get('/', (req, res) => {
 });
 
 
-router.get('/:ssn', (req, res) => {
+router.get('/:id', (req, res) => {
 	const doctors = getDoctors();
-  const doctor = doctors.find(c => c.ssn === parseInt(req.params.ssn));
-  if (!doctor) return res.status(404).send('The doctor with the given SSN was not found.');
+  const doctor = doctors.find(c => c.id === parseInt(req.params.id));
+  if (!doctor) return res.status(404).send('The doctor with the given ID was not found.');
   res.send(doctor);
 });
 

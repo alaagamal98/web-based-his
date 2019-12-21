@@ -24,10 +24,10 @@ router.get('/', (req, res) => {
 });
 
 
-router.get('/:ssn', (req, res) => {
+router.get('/:id', (req, res) => {
 	const nurses = getNurses();
-  const nurse = nurses.find(c => c.ssn === parseInt(req.params.ssn));
-  if (!nurse) return res.status(404).send('The nurse with the given SSN was not found.');
+  const nurse = nurses.find(c => c.id === parseInt(req.params.id));
+  if (!nurse) return res.status(404).send('The nurse with the given ID was not found.');
   res.send(nurse);
 });
 
