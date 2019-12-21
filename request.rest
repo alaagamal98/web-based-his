@@ -6,14 +6,14 @@ POST http://localhost:3000/api/doctors/add_doctor
 content-type: application/json
 
 {
-      "ssn": "12345678901234",
+      "ssn": "11111111111111111111",
       "title": "something",
       "first_name": "something",
       "last_name":"something",
-      "email": "something",
+      "email": "something@gmail.com",
       "gender": "something",
       "salary": 12345,
       "phone_number": 12345,
-      "password": "something"
+      "password": "123456791"
 }
 
