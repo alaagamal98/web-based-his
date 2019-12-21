@@ -21,7 +21,7 @@ const app = express();
 mongoose
   .connect("mongodb://localhost/icu")
   .then(() => console.log("Connected to MongoDB..."))
-  .catch(err => console.error("Could not connect to MongoDB..."));
+  .catch(err => console.error(err));
 
 // Route Files
 app.use(express.json());
@@ -36,5 +36,5 @@ app.use("/api/medicines", medicines);
 app.use("/api/feedbacks", feedbacks);
 app.use("/api/login", login);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`listening on port ${port}...`));

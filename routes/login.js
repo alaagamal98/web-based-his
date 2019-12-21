@@ -1,5 +1,4 @@
 const Joi = require('joi');
-const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const {Eng} = require('../models/eng.js'); 
 const {Manger} = require('../models/manger.js');
@@ -23,41 +22,36 @@ router.post('/', async (req, res) => {
   if (!manger && !doctor && !nurse && !eng && !patient) return res.status(400).send('Invalid email or password.');
 
 	if (manger){
-		const validPasswordManger = await bcrypt.compare(req.body.password, manger.password);
 
-  if (!validPassword) return res.status(400).send('Invalid email or password.');
+  if (req.body.password != manger.password) return res.status(400).send('Invalid email or password.');
 
   const token = manger.generateAuthToken();
   res.send(token);
   }
   else if (doctor){
-		const validPasswordManger = await bcrypt.compare(req.body.password, doctor.password);
 
-  if (!validPassword) return res.status(400).send('Invalid email or password.');
+  if (req.body.password != doctor.password) return res.status(400).send('Invalid email or password.');
 
   const token = doctor.generateAuthToken();
   res.send(token);
   }
   else if (nurse){
-		const validPasswordManger = await bcrypt.compare(req.body.password, nurse.password);
 
-  if (!validPassword) return res.status(400).send('Invalid email or password.');
+  if (req.body.password != nurse.password) return res.status(400).send('Invalid email or password.');
 
   const token = nurse.generateAuthToken();
   res.send(token);
   }
   else if (eng){
-		const validPasswordManger = await bcrypt.compare(req.body.password, eng.password);
 
-  if (!validPassword) return res.status(400).send('Invalid email or password.');
+  if (req.body.password != eng.password) return res.status(400).send('Invalid email or password.');
 
   const token = eng.generateAuthToken();
   res.send(token);
   }
   else if (patient){
-		const validPasswordManger = await bcrypt.compare(req.body.password, patient.password);
 
-  if (!validPassword) return res.status(400).send('Invalid email or password.');
+  if (req.body.password != patient.password) return res.status(400).send('Invalid email or password.');
 
   const token = patient.generateAuthToken();
   res.send(token);
