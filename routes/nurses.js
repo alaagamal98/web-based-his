@@ -18,13 +18,13 @@ async function getNurses() {
 }
 
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
 	const nurses = getNurses();
   res.send(nurses);
 });
 
 
-app.get('/:ssn', (req, res) => {
+router.get('/:ssn', (req, res) => {
 	const nurses = getNurses();
   const nurse = nurses.find(c => c.ssn === parseInt(req.params.ssn));
   if (!nurse) return res.status(404).send('The nurse with the given SSN was not found.');

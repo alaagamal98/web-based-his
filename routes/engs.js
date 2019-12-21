@@ -19,13 +19,13 @@ async function getEngs() {
 }
 
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
 	const engs = getDoctors();
   res.send(engs);
 });
 
 
-app.get('/:ssn', (req, res) => {
+router.get('/:ssn', (req, res) => {
 	const engs = getEngs();
   const eng = engs.find(c => c.ssn === parseInt(req.params.ssn));
   if (!eng) return res.status(404).send('The engineer with the given SSN was not found.');

@@ -38,13 +38,13 @@ async function getDoctors() {
 }
 
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
 	const doctors = getDoctors();
   res.send(doctors);
 });
 
 
-app.get('/:ssn', (req, res) => {
+router.get('/:ssn', (req, res) => {
 	const doctors = getDoctors();
   const doctor = doctors.find(c => c.ssn === parseInt(req.params.ssn));
   if (!doctor) return res.status(404).send('The doctor with the given SSN was not found.');
