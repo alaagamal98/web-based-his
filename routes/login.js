@@ -32,8 +32,8 @@ router.post('/', async (req, res) => {
 
   if (req.body.password != doctor.password) return res.status(400).send('Invalid email or password.');
 
-  const token = doctor.generateAuthToken();
-  res.send(token);
+  //const token = doctor.generateAuthToken();
+  res.send(doctor);
   }
   else if (nurse){
 

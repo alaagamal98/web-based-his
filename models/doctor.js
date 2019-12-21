@@ -134,10 +134,10 @@ const doctorSchema = new mongoose.Schema({
   }
 });
 
-doctorSchema.methods.generateAuthToken = function() {
-  const token = jwt.sign({ _id: this._id }, config.get("jwtPrivateKey"));
-  return token;
-};
+//doctorSchema.methods.generateAuthToken = function() {
+//  const token = jwt.sign({ _id: this._id }, config.get("jwtPrivateKey"));
+ // return token;
+//};
 
 const Doctor = mongoose.model("Doctor", doctorSchema);
 

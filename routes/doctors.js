@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
 const _ = require("lodash");
 const { Doctor, validate } = require("../models/doctor");
 
@@ -38,15 +37,18 @@ router.post("/add_doctor", async (req, res) => {
 async function getDoctors() {
   return await Doctor;
 }
-
+async function run(){
+  const doctors =await getDoctors();
+ return doctors;
+}
 router.get("/", (req, res) => {
-  const doctors = getDoctors();
+  const doctors = run();
   res.send(doctors);
 });
 
 router.get("/:id", (req, res) => {
-  const doctors = getDoctors();
-  const doctor = doctors.find(c => c.id === parseInt(req.params.id));
+  const doctors = run();
+  const doctor = doctors.findOne({id:parseInt(req.params.id)});
   if (!doctor)
     return res.status(404).send("The doctor with the given ID was not found.");
   res.send(doctor);
