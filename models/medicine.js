@@ -1,11 +1,12 @@
-const Joi = require('joi');
+
+const Joi = require('Joi');
 Joi.objectId= require('joi-objectid')(Joi);
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const Medicine = mongoose.model('Medicine', new mongoose.Schema({
 
     name:{
-        type:[{String}],
+        type:[String],
         required: true
     },
     quantity:{
@@ -13,7 +14,7 @@ const Medicine = mongoose.model('Medicine', new mongoose.Schema({
         required: true
     },
     date: {
-        type:[{ Date}],
+        type:[ Date],
         required: true
     },
     dose: {
@@ -27,7 +28,7 @@ const Medicine = mongoose.model('Medicine', new mongoose.Schema({
     },
 
     replacements:{ 
-        type:[{String}],
+        type:[String],
         required:true
     }
     }));
@@ -35,6 +36,8 @@ const Medicine = mongoose.model('Medicine', new mongoose.Schema({
     function validateMedicine(medicine) {
     const schema = {
         //de al data ali h5lii user ed5lha
+        MedicineName: Joi.String([]).required(),
+        MedicineQuantity:Joi.Number().required(),
         MedicineDate: Joi.Date().required(),
         MedicineDose: Joi.String().required(),
         MedicinePrice: Joi.Number().required(),
@@ -42,7 +45,7 @@ const Medicine = mongoose.model('Medicine', new mongoose.Schema({
     };
     
     return Joi.validate(medicine, schema);
-    }
+    };
     
     
     exports.Medicine = Medicine; 

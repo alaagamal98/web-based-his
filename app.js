@@ -1,19 +1,20 @@
-const mongoose = require("mongoose");
+
+const mongoose = require('mongoose');
 const nurses = require('./routes/nurses');
 const equipments = require('./routes/equipments');
 const mangers = require('./routes/mangers');
 const engs = require('./routes/engs');
-const doctors = require('./routes/doctors')
-const patients = require('./routes/patients')
-const medicines = require('./routes/medicines')
-const rooms = require('./routes/rooms')
-
+const doctors = require('./routes/doctors');
+const patients = require('./routes/patients');
+const medicines = require('./routes/medicines');
+const rooms = require('./routes/rooms');
+const feedbacks = require('./routes/feedbacks');
 const express = require('express');
 const app = express();
 
-mongoose.connect('mongodb://localhost/icu')
+mongoose.connect('mongodb://localhost/ICU')
   .then(() => console.log('Connected to MongoDB...'))
-  .catch(err => console.error('Could not connect to MongoDB...'));
+  .catch(err => console.error('Could not connect to MongoDB...', err));
 
 
 app.use(express.json());
@@ -25,6 +26,7 @@ app.use('/api/rooms', rooms);
 app.use('/api/patients', patients);
 app.use('/api/doctors', doctors);
 app.use('/api/medicines', medicines);
+app.use('/api/feedbacks', feedbacks);
 // let db = mongoose.connection;
 
 // // Check connection

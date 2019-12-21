@@ -4,8 +4,9 @@ const mongoose = require("mongoose");
 
 const Room = mongoose.model('Room', new mongoose.Schema({
     vacancyOfRoom:{
-        type: Boolean,
-        requied: true
+        type: String,
+        requied: true,
+        enum:['Empty', 'Full']
     },
     
     numberOfEquipment :{
@@ -14,7 +15,7 @@ const Room = mongoose.model('Room', new mongoose.Schema({
     },
 
     nameOfEquipment:{
-        type: [{String}],
+        type: [String],
         required: true
     }
 }));
