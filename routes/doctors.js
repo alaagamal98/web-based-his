@@ -17,21 +17,17 @@ router.post("/add_doctor", async (req, res) => {
     return res.status(400).send("That doctor already exisits!");
   } else {
     // Insert the new doctor if they do not exist yet
-    doctor = new Doctor(
-      _.pick(req.body, [
-        "ssn",
-        "title",
-        "first_name",
-        "last_name",
-        "email",
-        "gender",
-        "salary",
-        "phone_number",
-        "password"
-      ])
-    );
-    const salt = await bcrypt.genSalt(10);
-    doctor.password = await bcrypt.hash(doctor.password, salt);
+    doctor = new Doctor({
+      ssn: req.body.ssn,
+      title: req.body.title,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      gender: req.body.gender,
+      salary: req.body.salary,
+      phone_number: req.body.phone_number,
+      password: req.body.password
+    });
     await doctor.save();
     res.send(doctor);
   }

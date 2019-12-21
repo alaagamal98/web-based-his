@@ -148,12 +148,13 @@ function validateDoctor(doctor) {
       .required()
       // .unique()
       .min(14),
-    title: Joi.string().required(),
-    first_name: Joi.string()
+    title: Joi.string()
+    .required(),
+    firstName: Joi.string()
       .required()
       .min(2)
       .max(12),
-    last_name: Joi.string()
+    lastName: Joi.string()
       .required()
       .min(2)
       .max(12),
