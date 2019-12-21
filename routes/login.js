@@ -6,7 +6,7 @@ const {Manger} = require('../models/manger.js');
 const {Nurse} = require('../models/nurse');
 const {Doctor} = require('../models/doctor');
 const {Patient} = require('../models/patient');
-\const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
