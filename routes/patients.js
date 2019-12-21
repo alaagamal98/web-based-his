@@ -41,6 +41,15 @@ router.post("/add_patient", async (req, res) => {
 });
 
 // delete patient
+//delete
+router.delete('/:id', async (req, res) => {
+  const patient = await Patient.findByIdAndRemove(req.params.id);
+
+  if (!patient) return res.status(404).send('The patient with the given ID was not found.');
+
+  res.send(patient);
+});
+//..................
 
 async function getPatients() {
   return await Patient;
