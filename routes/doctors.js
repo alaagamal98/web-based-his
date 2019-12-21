@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const _ = require("lodash");
-const { Doctor, validateDoctor } = require("../models/doctor");
+const { Doctor, validate } = require("../models/doctor");
 
 // create doctor
-router.post("/add_doctor", async (req, res) => {
+router.post("/", async (req, res) => {
   // Validate The Request
-  const { error } = validateDoctor(req.body);
+  const { error } = validate(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
   }

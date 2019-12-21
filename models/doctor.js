@@ -172,4 +172,4 @@ function validateDoctor(doctor) {
 }
 
 exports.Doctor = Doctor;
-exports.validateDoctor = validateDoctor;
+exports.validate = validateDoctor;
