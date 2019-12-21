@@ -1,16 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const { Doctor, validateDoctor } = require("../models/doctor");
+const bcrypt = require("bcryptjs");
+const _ = require("lodash");
+const { Doctor, validate } = require("../models/doctor");
 
 // create doctor
 router.post("/add_doctor", async (req, res) => {
   // Validate The Request
-  const { error } = validateDoctor(req.body);
+  const { error } = validate(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
   // Check if this doctor already exisits
-  let doctor = await Doctor.findOne({ email: req.body.email });
+  let doctor = await Doctor.findOne({ ssn: req.body.ssn });
   if (doctor) {
     return res.status(400).send("That doctor already exisits!");
   } else {
@@ -37,17 +39,16 @@ async function getDoctors() {
   return await Doctor;
 }
 
-
-router.get('/', (req, res) => {
-	const doctors = getDoctors();
+router.get("/", (req, res) => {
+  const doctors = getDoctors();
   res.send(doctors);
 });
 
-
-router.get('/:id', (req, res) => {
-	const doctors = getDoctors();
+router.get("/:id", (req, res) => {
+  const doctors = getDoctors();
   const doctor = doctors.find(c => c.id === parseInt(req.params.id));
-  if (!doctor) return res.status(404).send('The doctor with the given ID was not found.');
+  if (!doctor)
+    return res.status(404).send("The doctor with the given ID was not found.");
   res.send(doctor);
 });
 

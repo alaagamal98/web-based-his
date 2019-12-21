@@ -1,89 +1,85 @@
-const config = require('config');
-const jwt = require('jsonwebtoken');
-const Joi = require('joi');
-Joi.objectId= require('joi-objectid')(Joi);
+const config = require("config");
+const jwt = require("jsonwebtoken");
+const Joi = require("joi");
+Joi.objectId = require("joi-objectid")(Joi);
 const mongoose = require("mongoose");
 
-
 const patientSchema = new mongoose.Schema({
-  
   ssn: {
     type: String,
     required: true,
     unique: true,
-    lenght: 14
+    length: 14
   },
   firstName: {
     type: String,
     required: true,
-    minlenght: 2,
-    maxlenght: 12
+    minlength: 2,
+    maxlength: 12
   },
-  
+
   lastName: {
     type: String,
     required: true,
-    minlenght: 2,
-    maxlenght: 12
+    minlength: 2,
+    maxlength: 12
   },
   email: {
     type: String,
     required: true,
     unique: true
-
   },
   gender: {
     type: String,
     required: true,
-    enum: ['Male', 'Female']
+    enum: ["Male", "Female"]
   },
   Dep_phone_number: {
     type: [{ type: Number }],
     required: true,
-    minlenght: 11
+    minlength: 11
   },
   password: {
     type: String,
     required: true,
-    minlenght: 8,
-    unique:true
+    minlength: 8
   },
-  history:{
-    type:String,
-    required:true,
-  },
-  enteryDate:{
-    type:Date,
+  history: {
+    type: String,
     required: true
   },
-  exitDate:{
-    type:Date,
+  entryDate: {
+    type: Date,
+    required: true
+  },
+  exitDate: {
+    type: Date,
     required: true
   },
 
-  Medicine:{
-    type:mongoose.Schema.Types.ObjectId,
-      ref:'Medicine',
+  Medicine: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Medicine",
     date: {
-      type:[ Date],
+      type: [Date],
       required: true
-  },
-  dose: {
-      type: String,   
+    },
+    dose: {
+      type: String,
       required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    },
+    quantity: {
+      type: Number,
+      required: true
+    }
   },
-  price: {
-    type: Number,
-    required: true  
-   },
-   quantity:{
-    type:Number,
-    required: true
-   }
-  },
-  Nurse:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:'Nurse',
+  Nurse: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Nurse",
     firstName: {
       type: String,
       required: true,
@@ -95,81 +91,69 @@ const patientSchema = new mongoose.Schema({
       required: true,
       minlength: 2,
       maxlength: 50
+    }
   },
-},
-  Doctor:{
-    type:mongoose.Schema.Types.ObjectId,
-      ref:'Doctor',
-    firstName:{ 
+  Doctor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Doctor",
+    firstName: {
       type: String,
       required: true,
-      minlenght: 2,
-      maxlenght: 12
+      minlength: 2,
+      maxlength: 12
     },
-    
-    lastName:{ 
+
+    lastName: {
       type: String,
       required: true,
-      minlenght: 2,
-      maxlenght: 12
-    },
+      minlength: 2,
+      maxlength: 12
+    }
   }
- 
-  });
-  
-  
+});
 
-
-    
-    patientSchema.methods.generateAuthToken = function() { 
-  const token = jwt.sign({ _id: this._id}, config.get('jwtPrivateKey'));
+patientSchema.methods.generateAuthToken = function() {
+  const token = jwt.sign({ _id: this._id }, config.get("jwtPrivateKey"));
   return token;
-}
+};
 // Define a schema
-const Patient = mongoose.model('Patient', patientSchema);
-
+const Patient = mongoose.model("Patient", patientSchema);
 
 function validatePatient(patient) {
-  const schema =Joi.object().keys({
+  const schema = Joi.object().keys({
     //de al data ali h5lii user ed5lha
-    ssn:Joi.string()
-    .required()
-    //.unique()
-    .lenght(14),
+    ssn: Joi.string()
+      .required()
+      //.unique()
+      .length(14),
     firstName: Joi.string()
-    .required()
-    .min(2)
-    .max(12),
+      .required()
+      .min(2)
+      .max(12),
     lastName: Joi.string()
-    .required()
-    .min(2)
-    .max(12),
-    email: Joi.String()
-    .required(),
+      .required()
+      .min(2)
+      .max(12),
+    email: Joi.string().required(),
     //.unique(),
-    gender: Joi.string()
-    .required()
-    .enum(),
-    Dep_phone_number :Joi.string()
-    .required()
-    .min(11),
+    gender: Joi.string().required(),
+    // .enum(),
+    Dep_phone_number: Joi.string()
+      .required()
+      .min(11),
     password: Joi.string()
-    .required()
-    .lenght(8),
+      .required()
+      .length(8),
     //.unique(),
-    history: Joi.String()
-    .required(),
-    entryDate: Joi.date()
-    .required(),
-    exitDate: Joi.date()
-    .required()
+    history: Joi.string().required(),
+    entryDate: Joi.date().required(),
+    exitDate: Joi.date().required()
   });
 
   return Joi.validate(patient, schema);
 }
 
-
-exports.Patient = Patient; 
+exports.Patient = Patient;
 exports.validate = validatePatient;
 
 // To add additional functionality to schema

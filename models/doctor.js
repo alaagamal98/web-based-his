@@ -1,21 +1,20 @@
-const config = require('config');
-const jwt = require('jsonwebtoken');
-const Joi = require('joi');
-Joi.objectId= require('joi-objectid')(Joi);
+const config = require("config");
+const jwt = require("jsonwebtoken");
+const Joi = require("joi");
+Joi.objectId = require("joi-objectid")(Joi);
 const mongoose = require("mongoose");
 
 // Define a schema
 const doctorSchema = new mongoose.Schema({
-  
   ssn: {
     type: String,
     required: true,
     unique: true,
     lenght: 14
   },
-  title:{
-    type:String,
-    required : true
+  title: {
+    type: String,
+    required: true
   },
   firstName: {
     type: String,
@@ -23,7 +22,7 @@ const doctorSchema = new mongoose.Schema({
     minlenght: 2,
     maxlenght: 12
   },
-  
+
   lastName: {
     type: String,
     required: true,
@@ -40,107 +39,107 @@ const doctorSchema = new mongoose.Schema({
   gender: {
     type: String,
     required: true,
-    enum:['Male','Female']
+    enum: ["Male", "Female"]
   },
   salary: {
     type: Number,
     required: true
   },
-  phone_number: { //number wla string??
-    type: [{ type: Number}], // array of numbers
+  phone_number: {
+    //number wla string??
+    type: [{ type: Number }], // array of numbers
     required: true
   },
   password: {
     type: String,
     required: true,
-    minlenght: 8,
-    unique:true
+    minlenght: 8
   },
-    
-    Patient :{
-      type:mongoose.Schema.Types.ObjectId,
-         ref:'Patient',
-         firstName:{
-           type:String,
-           required:true
-         },
-         email:{
-          type: String,
-          required:true
-         }, 
-         password:{
-          type: String,
-          required:true,
-          minlenght:8,
-          unique: true
-         },
-         history:{
-          type: String,
-          required:true 
-         },
-         gender:{
-          type: String,
-          required: true,
-          enum:['Male','Female']
-         }
+
+  Patient: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Patient",
+    firstName: {
+      type: String,
+      required: true
     },
-    Medicine:{
-      type:mongoose.Schema.Types.ObjectId,
-         ref:'Medicine',
-      name:{
-        type:[String],
-          required: true
-      },
-      dose: {
-        type: String,   
-        required: true
+    email: {
+      type: String,
+      required: true
     },
-    replacements:{ 
-      type:[String],
-      required:true
+    password: {
+      type: String,
+      required: true,
+      minlenght: 8,
+      unique: true
+    },
+    history: {
+      type: String,
+      required: true
+    },
+    gender: {
+      type: String,
+      required: true,
+      enum: ["Male", "Female"]
     }
+  },
+  Medicine: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Medicine",
+    name: {
+      type: [String],
+      required: true
     },
-    Manger:{
-      type:mongoose.Schema.Types.ObjectId,
-         ref:'Manger',
-     
-      firstName: {
-        type: String,
-        required: true,
-        minlength: 2,
-        maxlength: 50
-      },
-      lastName: {
-        type: String,
-        required: true,
-        minlength: 2,
-        maxlength: 50
-      },
-      email: {
-        type: String,
-        required: true,
-        unique: true
-      },
-      Room:{  // msh mot2kda de t5os dr wla la2??
-    
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Room',      
-        vacancyOfRoom:{
-          type: String,
-          requied: true,
-          enum:['Empty', 'Full']
-      }
-      }
-      }
-      });
+    dose: {
+      type: String,
+      required: true
+    },
+    replacements: {
+      type: [String],
+      required: true
+    }
+  },
+  Manger: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Manger",
 
+    firstName: {
+      type: String,
+      required: true,
+      minlength: 2,
+      maxlength: 50
+    },
+    lastName: {
+      type: String,
+      required: true,
+      minlength: 2,
+      maxlength: 50
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    Room: {
+      // msh mot2kda de t5os dr wla la2??
 
-doctorSchema.methods.generateAuthToken = function() { 
-  const token = jwt.sign({ _id: this._id}, config.get('jwtPrivateKey'));
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Room",
+      vacancyOfRoom: {
+        type: String,
+        requied: true,
+        enum: ["Empty", "Full"]
+      }
+    }
+  }
+});
+
+doctorSchema.methods.generateAuthToken = function() {
+  const token = jwt.sign({ _id: this._id }, config.get("jwtPrivateKey"));
   return token;
-}
+};
 
-const Doctor = mongoose.model('Doctor', doctorSchema);
+const Doctor = mongoose.model("Doctor", doctorSchema);
 
 function validateDoctor(doctor) {
   const schema = Joi.object().keys({
@@ -159,15 +158,11 @@ function validateDoctor(doctor) {
       .required()
       .min(2)
       .max(12),
-    email: Joi.string()
-    .required(),
-    gender: Joi.string()
-    .required(),
-    salary: Joi.number()
-    .required(),
+    email: Joi.string().required(),
+    gender: Joi.string().required(),
+    salary: Joi.number().required(),
     // phone_number: Joi.number([]).required(),
-    phone_number: Joi.number()
-    .required(),
+    phone_number: Joi.number().required(),
     password: Joi.string()
       .required()
       .min(8)
@@ -178,4 +173,4 @@ function validateDoctor(doctor) {
 }
 
 exports.Doctor = Doctor;
-exports.validateDoctor = validateDoctor;
+exports.validate = validateDoctor;
