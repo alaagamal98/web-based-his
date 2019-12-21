@@ -1,8 +1,10 @@
+const config = require('config');
+const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 const mongoose = require("mongoose");
 
-// Nurse Schema
-const Nurse = mongoose.model('Nurse', new mongoose.Schema({
+
+const nurseSchema = new mongoose.Schema({
     first_name: {
       type: String,
       required: true,
@@ -52,7 +54,15 @@ const Nurse = mongoose.model('Nurse', new mongoose.Schema({
     Room: {
       type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Room" }]
     }
-  }));
+  })
+  
+    
+    nurseSchema.methods.generateAuthToken = function() { 
+  const token = jwt.sign({ _id: this._id}, config.get('jwtPrivateKey'));
+  return token;
+}
+// Nurse Schema
+const Nurse = mongoose.model('Nurse', nurseSchema);
 
   
   function validateNurse(nurse) {

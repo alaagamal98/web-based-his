@@ -17,17 +17,6 @@ router.post("/add_doctor", async (req, res) => {
     return res.status(400).send("That doctor already exisits!");
   } else {
     // Insert the new doctor if they do not exist yet
-    // doctor = new Doctor({
-    //   ssn: req.body.ssn,
-    //   title: req.body.title,
-    //   first_name: req.body.first_name,
-    //   last_name: req.body.last_name,
-    //   email: req.body.email,
-    //   gender: req.body.gender,
-    //   salary: req.body.salary,
-    //   phone_number: req.body.phone_number,
-    //   password: req.body.password
-    // });
     doctor = new Doctor(
       _.pick(req.body, [
         "ssn",
@@ -50,7 +39,22 @@ router.post("/add_doctor", async (req, res) => {
 
 // delete
 
-// update
+async function getDoctors() {
+  return await Doctor;
+}
+
+router.get("/", (req, res) => {
+  const doctors = getDoctors();
+  res.send(doctors);
+});
+
+router.get("/:id", (req, res) => {
+  const doctors = getDoctors();
+  const doctor = doctors.find(c => c.id === parseInt(req.params.id));
+  if (!doctor)
+    return res.status(404).send("The doctor with the given ID was not found.");
+  res.send(doctor);
+});
 
 // read
 

@@ -1,9 +1,11 @@
+const config = require('config');
+const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 Joi.objectId= require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
 
-// Define a schema
-const Patient = mongoose.model('Patient', new mongoose.Schema({
+
+const patientSchema = new mongoose.Schema({
   
   ssn: {
     type: String,
@@ -63,7 +65,15 @@ const Patient = mongoose.model('Patient', new mongoose.Schema({
   },
   
   // not complete
-}));
+})
+
+    
+    patientSchema.methods.generateAuthToken = function() { 
+  const token = jwt.sign({ _id: this._id}, config.get('jwtPrivateKey'));
+  return token;
+}
+// Define a schema
+const Patient = mongoose.model('Patient', patientSchema);
 // movie: {
 //   type: new mongoose.Schema({
 //     title: {
@@ -77,14 +87,14 @@ const Patient = mongoose.model('Patient', new mongoose.Schema({
 function validatePatient(patient) {
   const schema = {
     //de al data ali h5lii user ed5lha
-    PatientSsn:Joi.String().required().unique().lenght(14),
-    Patientfirst_name: Joi.String().required().minlenght(2).maxlenght(12),
-    Patientlast_name: Joi.String().required().minlenght(2).maxlenght(12),
-    PatientEmail: Joi.String().required(),
-    PatientGender: Joi.String().required(),
-    PatientDep_phone_number :Joi.String([]).required(),
-    PatientPassword: Joi.String().required().lenght(8).unique(),
-    PatientHistory: Joi.String().required(),
+    ssn:Joi.String().required().unique().lenght(14),
+    first_name: Joi.String().required().minlenght(2).maxlenght(12),
+    last_name: Joi.String().required().minlenght(2).maxlenght(12),
+    email: Joi.String().required(),
+    gender: Joi.String().required(),
+    Dep_phone_number :Joi.String([]).required(),
+    password: Joi.String().required().lenght(8).unique(),
+    history: Joi.String().required(),
   };
 
   return Joi.validate(patient, schema);
