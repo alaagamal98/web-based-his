@@ -5,7 +5,7 @@ const _ = require("lodash");
 const { Doctor, validate } = require("../models/doctor");
 
 // create doctor
-router.post("/", async (req, res) => {
+router.post("/add_doctor", async (req, res) => {
   // Validate The Request
   const { error } = validate(req.body);
   if (error) {

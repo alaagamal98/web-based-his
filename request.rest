@@ -2,7 +2,7 @@
 // For testing
 // Using REST client extension in VS code
 // You can use postman instead
-POST http://localhost:3000/api/patients/
+POST http://localhost:3000/api/patients/add_patient
 content-type: application/json
 
 {

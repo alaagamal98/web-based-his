@@ -7,7 +7,7 @@ const { Patient, validate } = require("../models/patient");
 // routes
 
 // create patient
-router.post("/", async (req, res) => {
+router.post("/add_patient", async (req, res) => {
   // Validate The Request
   const { error } = validate(req.body);
   if (error) {
@@ -39,6 +39,8 @@ router.post("/", async (req, res) => {
     res.send(patient);
   }
 });
+
+// delete patient
 
 async function getPatients() {
   return await Patient;
