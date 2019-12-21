@@ -1,3 +1,6 @@
+const config = require('config');
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
 const nurses = require('./routes/nurses');
 const equipments = require('./routes/equipments');
@@ -7,7 +10,7 @@ const doctors = require('./routes/doctors')
 const patients = require('./routes/patients')
 const medicines = require('./routes/medicines')
 const rooms = require('./routes/rooms')
-
+const login = require('./routes/login')
 const express = require('express');
 const app = express();
 
@@ -25,6 +28,7 @@ app.use('/api/rooms', rooms);
 app.use('/api/patients', patients);
 app.use('/api/doctors', doctors);
 app.use('/api/medicines', medicines);
+app.use('/api/login',login);
 // let db = mongoose.connection;
 
 // // Check connection

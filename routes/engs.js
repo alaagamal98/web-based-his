@@ -14,6 +14,25 @@ const router = express.Router();
 
 
 
+async function getEngs() {
+  return await Eng;
+}
+
+
+app.get('/', (req, res) => {
+	const engs = getDoctors();
+  res.send(engs);
+});
+
+
+app.get('/:ssn', (req, res) => {
+	const engs = getEngs();
+  const eng = engs.find(c => c.ssn === parseInt(req.params.ssn));
+  if (!eng) return res.status(404).send('The engineer with the given SSN was not found.');
+  res.send(eng);
+});
+
+
 
 
 module.exports = router;

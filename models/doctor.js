@@ -1,8 +1,10 @@
+const config = require('config');
+const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 Joi.objectId= require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
 // Define a schema
-const Doctor = mongoose.model('Doctor', new mongoose.Schema({
+const doctorSchema =new mongoose.Schema({
   // number: {
   //   type: Number,
   //   required: true,
@@ -54,20 +56,28 @@ const Doctor = mongoose.model('Doctor', new mongoose.Schema({
     minlenght: 8,
     unique:true
   }
-}));
+});
+
+
+doctorSchema.methods.generateAuthToken = function() { 
+  const token = jwt.sign({ _id: this._id}, config.get('jwtPrivateKey'));
+  return token;
+}
+
+const Doctor = mongoose.model('Doctor', doctorSchema);
 
 function validateDoctor(doctor) {
   const schema = {
     //de al data ali h5lii user ed5lha
-    DoctorSsn:Joi.String().required().unique().lenght(14),
-    Doctortitle: Joi.String().required(),
-    Doctorfirst_name: Joi.String().required().minlenght(2).maxlenght(12),
-    Doctorlast_name: Joi.String().required().minlenght(2).maxlenght(12),
-    DoctorEmail: Joi.String().required(),
-    DoctorGender: Joi.String().required(),
-    DoctorSalary: Joi.Number().required(),
-    DoctorPhone_number :Joi.Number([]).required(),
-    DoctorPassword: Joi.String().required().minlenght(8).unique()
+    ssn:Joi.String().required().unique().lenght(14),
+    title: Joi.String().required(),
+    first_name: Joi.String().required().minlenght(2).maxlenght(12),
+    last_name: Joi.String().required().minlenght(2).maxlenght(12),
+    email: Joi.String().required(),
+    gender: Joi.String().required(),
+    salary: Joi.Number().required(),
+    phone_number :Joi.Number([]).required(),
+    password: Joi.String().required().minlenght(8).unique()
   };
 
   return Joi.validate(doctor, schema);
