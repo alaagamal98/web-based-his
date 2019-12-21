@@ -132,36 +132,36 @@ const Patient = mongoose.model('Patient', patientSchema);
 function validatePatient(patient) {
   const schema =Joi.object().keys({
     //de al data ali h5lii user ed5lha
-    PatientSsn:Joi.string()
+    ssn:Joi.string()
     .required()
     //.unique()
     .lenght(14),
-    PatientfirstName: Joi.string()
+    firstName: Joi.string()
     .required()
     .min(2)
     .max(12),
-    PatientlastName: Joi.string()
+    lastName: Joi.string()
     .required()
     .min(2)
     .max(12),
-    PatientEmail: Joi.String()
+    email: Joi.String()
     .required(),
     //.unique(),
-    PatientGender: Joi.string()
+    gender: Joi.string()
     .required()
     .enum(),
-    PatientDep_phone_number :Joi.string()
+    Dep_phone_number :Joi.string()
     .required()
     .min(11),
-    PatientPassword: Joi.string()
+    password: Joi.string()
     .required()
     .lenght(8),
     //.unique(),
-    PatientHistory: Joi.String()
+    history: Joi.String()
     .required(),
-    PatientEntrydate: Joi.date()
+    entryDate: Joi.date()
     .required(),
-    PatientExitdate: Joi.date()
+    exitDate: Joi.date()
     .required()
   });
 

@@ -151,11 +151,11 @@ function validateDoctor(doctor) {
       .min(14),
     title: Joi.string()
     .required(),
-    first_name: Joi.string()
+    firstName: Joi.string()
       .required()
       .min(2)
       .max(12),
-    last_name: Joi.string()
+    lastName: Joi.string()
       .required()
       .min(2)
       .max(12),

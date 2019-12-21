@@ -18,8 +18,8 @@ router.post("/add_doctor", async (req, res) => {
     doctor = new Doctor({
       ssn: req.body.ssn,
       title: req.body.title,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       email: req.body.email,
       gender: req.body.gender,
       salary: req.body.salary,
