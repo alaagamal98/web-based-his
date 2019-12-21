@@ -4,7 +4,10 @@ const mongoose = require("mongoose");
 
 
 // Equipment Schema
-const Equipment = mongoose.model('Equipment', new mongoose.Schema({
+const Equipment = mongoose.model(
+  "Equipment", 
+  new mongoose.Schema({
+
     equipment_name: {
       type: String,
       required: true
@@ -34,16 +37,23 @@ const Equipment = mongoose.model('Equipment', new mongoose.Schema({
 
   
   function validateEquipment(equipment) {
-    const schema = {
-      equipment_name: Joi.string().required(),
-      code: Joi.string().required().unique(),
-      maintanince_date: Joi.date().required(),
-      status: Joi.boolean().required(),
-      sterileDates: Joi.date().required(),
-    sterileOperation:Joi.string().required()
-  };
+    const schema = Joi.object().keys({
+      equipment_name: Joi.string()
+      .required(),
+      code: Joi.string()
+      .required(),
+      //.unique(),
+      maintanince_date: Joi.date()
+      .required(),
+      status: Joi.boolean()
+      .required(),
+      sterileDates: Joi.date()
+      .required(),
+      sterileOperation:Joi.string()
+      .required()
+  });
     return Joi.validate(equipment, schema);
-  }
+  };
   
 
 exports.Equipment = Equipment; 

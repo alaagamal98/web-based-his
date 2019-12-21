@@ -1,20 +1,40 @@
-const {Eng, validateEng} = require('../models/eng'); 
-const {Manger, validateManger} = require('../models/manger');
-const {Equipment, validateEquipment} = require('../models/equipment');
-const {Nurse, validateNurse} = require('../models/nurse');
-const {Doctor, validateDoctor} = require('../models/doctor');
-const {Room, validateRoom} = require('../models/room');
-const {Patient, validatePatient} = require('../models/patient');
-const {Medicine, validateMedicine} = require('../models/medicine');
-const {Feedback, validateFeedback} = require('../models/feedback');
-const mongoose = require('mongoose');
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const { Doctor, validateDoctor } = require("../models/doctor");
 
-// routes 
+// create doctor
+router.post("/add_doctor", async (req, res) => {
+  // Validate The Request
+  const { error } = validateDoctor(req.body);
+  if (error) {
+    return res.status(400).send(error.details[0].message);
+  }
+  // Check if this doctor already exisits
+  let doctor = await Doctor.findOne({ email: req.body.email });
+  if (doctor) {
+    return res.status(400).send("That doctor already exisits!");
+  } else {
+    // Insert the new doctor if they do not exist yet
+    doctor = new Doctor({
+      ssn: req.body.ssn,
+      title: req.body.title,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email: req.body.email,
+      gender: req.body.gender,
+      salary: req.body.salary,
+      phone_number: req.body.phone_number,
+      password: req.body.password
+    });
+    await doctor.save();
+    res.send(doctor);
+  }
+});
 
+// delete
 
+// update
 
-
+// read
 
 module.exports = router;

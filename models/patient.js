@@ -3,7 +3,9 @@ Joi.objectId= require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
 
 // Define a schema
-const Patient = mongoose.model('Patient', new mongoose.Schema({
+const Patient = mongoose.model(
+  "Patient",
+   new mongoose.Schema({
   
   ssn: {
     type: String,
@@ -116,19 +118,40 @@ const Patient = mongoose.model('Patient', new mongoose.Schema({
   }));
 
 function validatePatient(patient) {
-  const schema = {
+  const schema =Joi.object().keys({
     //de al data ali h5lii user ed5lha
-    PatientSsn:Joi.String().required().unique().lenght(14),
-    PatientfirstName: Joi.String().required().minlenght(2).maxlenght(12),
-    PatientlastName: Joi.String().required().minlenght(2).maxlenght(12),
-    PatientEmail: Joi.String().required().unique(),
-    PatientGender: Joi.String().required().enum(),
-    PatientDep_phone_number :Joi.String([]).required().minlenght(11),
-    PatientPassword: Joi.String().required().lenght(8).unique(),
-    PatientHistory: Joi.String().required(),
-    PatientEntrydate: Joi.Date().required(),
-    PatientExitdate: Joi.Date().required()
-  };
+    PatientSsn:Joi.string()
+    .required()
+    //.unique()
+    .lenght(14),
+    PatientfirstName: Joi.string()
+    .required()
+    .min(2)
+    .max(12),
+    PatientlastName: Joi.string()
+    .required()
+    .min(2)
+    .max(12),
+    PatientEmail: Joi.String()
+    .required(),
+    //.unique(),
+    PatientGender: Joi.string()
+    .required()
+    .enum(),
+    PatientDep_phone_number :Joi.string()
+    .required()
+    .min(11),
+    PatientPassword: Joi.string()
+    .required()
+    .lenght(8),
+    //.unique(),
+    PatientHistory: Joi.String()
+    .required(),
+    PatientEntrydate: Joi.date()
+    .required(),
+    PatientExitdate: Joi.date()
+    .required()
+  });
 
   return Joi.validate(patient, schema);
 }

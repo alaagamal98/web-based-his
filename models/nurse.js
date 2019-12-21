@@ -3,7 +3,9 @@ Joi.objectId= require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
 
 // Nurse Schema
-const Nurse = mongoose.model('Nurse', new mongoose.Schema({
+const Nurse = mongoose.model(
+  "Nurse",
+   new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
@@ -158,16 +160,35 @@ const Nurse = mongoose.model('Nurse', new mongoose.Schema({
 
   
   function validateNurse(nurse) {
-    const schema = {
-      firstName: Joi.string().min(2).max(50).required(),
-      lastName: Joi.string().min(2).max(50).required(),
-      ssn: Joi.string().required().unique().length(14),
-      email: Joi.string().required().unique(),
-      gender: Joi.string().required().enum(),
-      salary: Joi.Number().required(),
-      phone_number: Joi.number([]).min(11).required(),
-      password: Joi.string().min(8).required().unique()
-    };
+    const schema =Joi.object().keys({
+      firstName: Joi.string()
+      .min(2)
+      .max(50)
+      .required(),
+      lastName: Joi.string()
+      .min(2)
+      .max(50)
+      .required(),
+      ssn: Joi.string()
+      .required()
+      //.unique()
+      .length(14),
+      email: Joi.string()
+      .required(),
+      //.unique(),
+      gender: Joi.string()
+      .required()
+      .enum(),
+      salary: Joi.number()
+      .required(),
+      phone_number: Joi.number()
+      .min(11)
+      .required(),
+      password: Joi.string()
+      .min(8)
+      .required(),
+      //.unique()
+    });
   
     return Joi.validate(nurse, schema);
   }

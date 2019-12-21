@@ -1,6 +1,11 @@
 const Joi = require('joi');
+Joi.objectId= require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
-const Feedback = mongoose.model('Feedback', new mongoose.Schema({
+
+//Define Schema
+const Feedback = mongoose.model(
+    "Feedback",
+     new mongoose.Schema({
 
     comments :{
         type:String
@@ -8,13 +13,13 @@ const Feedback = mongoose.model('Feedback', new mongoose.Schema({
 }));
   
 function validateFeedback(feedback) {
-  const schema = {
+  const schema =Joi.object().keys({
     
     comments: Joi.string()
-  };
+  });
 
   return Joi.validate(feedback, schema);
-}
+};
 
 
 
