@@ -1,7 +1,6 @@
 {
   "name": "sbe306-2019porject-sbe306-2021-team07",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js"
@@ -23,10 +22,13 @@
     "connect-flash": "^0.1.1",
     "express": "^4.17.1",
     "googleapis": "^39.2.0",
+    "joi": "^14.3.1",
+    "joi-objectid": "^3.0.1",
     "mongoose": "^5.8.1",
     "mongoose-unique-validator": "^2.0.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
-  }
+  },
+  "description": ""
 }

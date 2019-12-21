@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // const express = require("express");
 // const router = express.Router();
 // const bcrypt = require("bcryptjs");
@@ -79,10 +80,23 @@
 // module.exports = router;
 
 const express = require("express");
+=======
+const {Eng, validateEng} = require('../models/eng'); 
+const {Manger, validateManger} = require('../models/manger');
+const {Equipment, validateEquipment} = require('../models/equipment');
+const {Nurse, validateNurse} = require('../models/nurse');
+const {Doctor, validateDoctor} = require('../models/doctor');
+const {Room, validateRoom} = require('../models/room');
+const {Patient, validatePatient} = require('../models/patient');
+const {Medicine, validateMedicine} = require('../models/medicine');
+const mongoose = require('mongoose');
+const express = require('express');
+>>>>>>> 7d02664e6d5337315635bdc0417a9ad1a6cebdde
 const router = express.Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
+<<<<<<< HEAD
 const Doctor = require("../models/doctor");
 
 router.post("/add_doctor", (req, res, next) => {
@@ -154,3 +168,12 @@ router.post("/add_doctor", (req, res, next) => {
 // });
 
 module.exports = router;
+=======
+// routes 
+
+
+
+
+
+module.exports = router;
+>>>>>>> 7d02664e6d5337315635bdc0417a9ad1a6cebdde
