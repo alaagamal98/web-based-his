@@ -2,7 +2,6 @@ const config = require('config');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require("mongoose");
-<<<<<<< HEAD
 const nurses = require('./routes/nurses');
 const equipments = require('./routes/equipments');
 const mangers = require('./routes/mangers');
@@ -41,24 +40,6 @@ app.use('/api/login',login);
 // db.on("error", function(err) {
 //   console.log(err);
 // });
-=======
-const express = require("express");
-const nurses = require("./routes/nurses");
-const equipments = require("./routes/equipments");
-const mangers = require("./routes/mangers");
-const engs = require("./routes/engs");
-const doctors = require("./routes/doctors");
-const patients = require("./routes/patients");
-const medicines = require("./routes/medicines");
-const rooms = require("./routes/rooms");
-const app = express();
-
-// Database connection
-mongoose
-  .connect("mongodb://localhost/icu")
-  .then(() => console.log("Connected to MongoDB..."))
-  .catch(err => console.error("Could not connect to MongoDB..."));
->>>>>>> 001ef18d7ca67fd02a0c608f0967e2acf288e525
 
 // Route Files
 app.use(express.json());
