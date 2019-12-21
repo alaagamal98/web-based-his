@@ -33,7 +33,6 @@ router.post("/add_doctor", async (req, res) => {
 
 // delete
 
-<<<<<<< HEAD
 async function getDoctors() {
   return await Doctor;
 }
@@ -51,9 +50,6 @@ app.get('/:ssn', (req, res) => {
   if (!doctor) return res.status(404).send('The doctor with the given SSN was not found.');
   res.send(doctor);
 });
-=======
-// update
->>>>>>> 001ef18d7ca67fd02a0c608f0967e2acf288e525
 
 // read
 
