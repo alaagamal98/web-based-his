@@ -17,14 +17,11 @@
   },
   "homepage": "https://github.com/sbme-tutorials/sbe306-2019porject-sbe306-2021-team07#readme",
   "dependencies": {
-<<<<<<< HEAD
     "bcrypt": "^3.0.6",
     "config": "^3.2.4",
-=======
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
->>>>>>> 001ef18d7ca67fd02a0c608f0967e2acf288e525
     "express": "^4.17.1",
     "googleapis": "^39.2.0",
     "joi": "^14.3.1",
