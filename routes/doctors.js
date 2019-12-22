@@ -42,23 +42,15 @@ router.delete('/:id', async (req, res) => {
   res.send(doctor);
 });
 //..................
-async function getDoctors() {
-  return await Doctor;
-}
-async function run(){
-  const doctors =await getDoctors();
- return doctors;
-}
-router.get("/", (req, res) => {
-  const doctors = run();
+
+router.get("/",async (req, res) => {
+  const doctors = await Doctor.find().sort('firstName') ;
   res.send(doctors);
 });
 
-router.get("/:id", (req, res) => {
-  const doctors = run();
-  const doctor = doctors.findOne({id:parseInt(req.params.id)});
-  if (!doctor)
-    return res.status(404).send("The doctor with the given ID was not found.");
+router.get("/:id",async (req, res) => {
+  const doctor = await Doctor.findById(req.params.id);
+  if (!doctor) return res.status(404).send("The doctor with the given ID was not found.");
   res.send(doctor);
 });
 

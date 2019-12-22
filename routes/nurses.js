@@ -17,23 +17,19 @@ router.delete('/:id', async (req, res) => {
 });
 //................................
 
-async function getNurses() {
-  return await Nurse;
-}
 
 
-router.get('/', (req, res) => {
-	const nurses = getNurses();
+router.get("/",async (req, res) => {
+  const nurses = await Nurse.find().sort('firstName') ;
   res.send(nurses);
 });
 
-
-router.get('/:id', (req, res) => {
-	const nurses = getNurses();
-  const nurse = nurses.find(c => c.id === parseInt(req.params.id));
-  if (!nurse) return res.status(404).send('The nurse with the given ID was not found.');
+router.get("/:id",async (req, res) => {
+  const nurse = await Nurse.findById(req.params.id);
+  if (!nurse) return res.status(404).send("The nurse with the given ID was not found.");
   res.send(nurse);
 });
+
 
 
 
