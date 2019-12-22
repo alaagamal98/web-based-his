@@ -9,19 +9,23 @@ const patientSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+<<<<<<< HEAD
     length: 10
+=======
+    length: 14
+>>>>>>> 8c3b7d0e9a4052145152ec95de2b6c23037698b4
   },
   firstName: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: 3,
     maxlength: 50
   },
 
   lastName: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: 3,
     maxlength: 50
   },
   email: {
@@ -85,35 +89,33 @@ const patientSchema = new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
-      minlength: 5,
+      minlength: 3,
       maxlength: 50
     },
     lastName: {
       type: String,
       required: true,
-      minlength: 5,
+      minlength: 3,
       maxlength: 50
     }
   },
-  Doctors: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Doctor",
-      firstName: {
-        type: String,
-        required: true,
-        minlength: 5,
-        maxlength: 50
-      },
-      lastName: {
-        type: String,
-        required: true,
-        minlength: 5,
-        maxlength: 50
-      }
+  Doctor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Doctor",
+    firstName: {
+      type: String,
+      required: true,
+      minlength: 3,
+      maxlength: 50
+    },
+
+    lastName: {
+      type: String,
+      required: true,
+      minlength: 3,
+      maxlength: 50
     }
-  ]
-});
+}});
 
 patientSchema.methods.generateAuthToken = function() {
   const token = jwt.sign({ _id: this._id }, config.get("jwtPrivateKey"));
@@ -128,14 +130,18 @@ function validatePatient(patient) {
     ssn: Joi.string()
       .required()
       //.unique()
+<<<<<<< HEAD
       .length(10),
+=======
+      .length(14),
+>>>>>>> 8c3b7d0e9a4052145152ec95de2b6c23037698b4
     firstName: Joi.string()
       .required()
-      .min(5)
+      .min(3)
       .max(50),
     lastName: Joi.string()
       .required()
-      .min(5)
+      .min(3)
       .max(50),
     email: Joi.string()
       .required()

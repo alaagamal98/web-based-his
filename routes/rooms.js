@@ -16,27 +16,17 @@ router.delete('/:id', async (req, res) => {
 });
 //............................
 
+router.get("/",async (req, res) => {
+  const rooms = await Room.find({}) ;
+  res.render('frontend page',{rooms:rooms})
+  res.send(rooms);
+});
 
-async function getRooms() {
-    return await Room;
-  }
-  
-  
-  router.get('/', (req, res) => {
-      const rooms = getRooms();
-    res.send(rooms);
-  });
-  
-  
-  router.get('/:id', (req, res) => {
-      const rooms = getRooms();
-    const room = rooms.find(c => c.id === parseInt(req.params.id));
-    if (!room) return res.status(404).send('The room with the given ID was not found.');
-    res.send(room);
-  });
-
-
-
+router.get("/:id",async (req, res) => {
+  const room = await Room.findById(req.params.id);
+  if (!room) return res.status(404).send("The room with the given ID was not found.");
+  res.send(room);
+});
 
 
 module.exports = router;

@@ -32,6 +32,30 @@ router.post("/add_doctor", async (req, res) => {
   }
 });
 
+
+router.put('/:id', async (req, res) => {
+  const { error } = validateDoctor(req.body); 
+  if (error) return res.status(400).send(error.details[0].message);
+
+  const doctor = await Doctor.findByIdAndUpdate(req.params.id,
+    { 
+      ssn: req.body.ssn,
+      title: req.body.title,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      gender: req.body.gender,
+      salary: req.body.salary,
+      phone_number: req.body.phone_number,
+      password: req.body.password
+
+    }, { new: true });
+
+    if (!doctor) return res.status(404).send('The doctor with the given ID was not found.');
+  
+  res.send(doctor);
+});
+
 // delete
 
 router.delete("/:id", async (req, res) => {
@@ -43,23 +67,16 @@ router.delete("/:id", async (req, res) => {
   res.send(doctor);
 });
 //..................
-async function getDoctors() {
-  return await Doctor;
-}
-async function run() {
-  const doctors = await getDoctors();
-  return doctors;
-}
-router.get("/", (req, res) => {
-  const doctors = run();
+
+router.get("/",async (req, res) => {
+  const doctors = await Doctor.find({}) ;
+  res.render('frontend page',{doctors:doctors})
   res.send(doctors);
 });
 
-router.get("/:id", (req, res) => {
-  const doctors = run();
-  const doctor = doctors.findOne({ id: parseInt(req.params.id) });
-  if (!doctor)
-    return res.status(404).send("The doctor with the given ID was not found.");
+router.get("/:id",async (req, res) => {
+  const doctor = await Doctor.findById(req.params.id);
+  if (!doctor) return res.status(404).send("The doctor with the given ID was not found.");
   res.send(doctor);
 });
 

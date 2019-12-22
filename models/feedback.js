@@ -6,16 +6,37 @@ const mongoose = require("mongoose");
 const Feedback = mongoose.model(
     "Feedback",
      new mongoose.Schema({
+     name: {
+        type: String,
+        required: true,
+        minlength: 3,
+        maxlength: 50
+      },
+      email: {
+        type: String,
+      required: true,
+      unique: true,
+      minlenght: 5,
+      maxlenght: 255,
+      },
+      subject:{
+        type: String,
+        required: true
+      },
+      
 
-    comments :{
-        type:String
+    message:{
+        type:String,
+        required: true
     }
 }));
   
 function validateFeedback(feedback) {
   const schema =Joi.object().keys({
-    
-    comments: Joi.string()
+    name: Joi.string().required().min(3).max(50),
+    email: Joi.string().required().email().min(5).max(255),
+    subject: Joi.string().required(),
+    comments: Joi.string().required()
   });
 
   return Joi.validate(feedback, schema);

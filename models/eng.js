@@ -71,21 +71,78 @@ const engSchema = new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
-      minlength: 5,
+      minlength: 3,
       maxlength: 50
     },
     lastName: {
       type: String,
       required: true,
-      minlength: 5,
+      minlength: 3,
       maxlength: 50
+    },
+    ssn: {
+      type: String,
+      required: true,
+      unique: true,
+      length: 14
     },
     email: {
       type: String,
       required: true,
-      unique: true,
-      minlenght: 5,
-      maxlenght: 255
+      enum: ["Male", "Female"]
+    },
+    salary: {
+      type: Number,
+      required: true
+    },
+    phone_number: {
+      type: [{ type: Number }], // array of numbers
+      required: true
+    },
+    password: {
+      type: String,
+      minlength: 5,
+      maxlenght: 1024,
+      required: true
+    },
+    Room: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Room",
+      numberOfEquipment: {
+        type: Number,
+        required: true
+      },
+      nameOfEquipment: {
+        type: [String],
+        required: true
+      }
+    },
+    Equipment: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Equipment"
+    },
+    Manger: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Manger",
+      firstName: {
+        type: String,
+        required: true,
+        minlength: 3,
+        maxlength: 50
+      },
+      lastName: {
+        type: String,
+        required: true,
+        minlength: 3,
+        maxlength: 50
+      },
+      email: {
+        type: String,
+        required: true,
+        unique: true,
+        minlenght: 5,
+        maxlenght: 255
+      }
     }
   }
 });
@@ -101,17 +158,17 @@ const Eng = mongoose.model("Eng", engSchema);
 function validateEng(eng) {
   const schema = Joi.object().keys({
     firstName: Joi.string()
-      .min(5)
+      .min(3)
       .max(50)
       .required(),
     lastName: Joi.string()
-      .min(5)
+      .min(3)
       .max(50)
       .required(),
     ssn: Joi.string()
       .required()
       //.unique()
-      .length(10),
+      .length(14),
     email: Joi.string()
       .required()
       .email(),
