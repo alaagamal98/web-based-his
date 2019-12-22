@@ -93,7 +93,7 @@ const patientSchema = new mongoose.Schema({
       maxlength: 50
     }
   },
-  doctors: [
+  Doctors: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Doctor"

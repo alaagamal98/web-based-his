@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const _ = require("lodash");
 const { Patient, validate } = require("../models/patient");
+const { Doctor, validateDoctor } = require("../models/doctor");
 
 // routes
 
@@ -42,10 +43,23 @@ router.post("/add_patient", async (req, res) => {
 
 // Assign patient to a doctor
 router.post("/assign_patient/:id", async (req, res) => {
-  let patient = await Patient.findOne({ _id: req.params.id });
-
-  // patient.doctors.push(req.id);
-  console.log(req.body);
+  let patient = await Patient.findById(req.params.id);
+  // Check if the patient already assigned
+  let index = _.find(patient.Doctors, element => {
+    return element == req.body._id;
+  });
+  if (index != undefined) {
+    return res
+      .status(400)
+      .send("The patient is already assigned to this doctor!");
+  } else {
+    patient.Doctors.push(req.body._id);
+    await patient.save();
+    let doctor = await Doctor.findById(req.body._id);
+    doctor.Patients.push(req.params.id);
+    await doctor.save();
+    res.send(patient);
+  }
 });
 
 // delete patient
