@@ -1,5 +1,5 @@
-const config = require("config");
-const jwt = require("jsonwebtoken");
+//const config = require("config");
+//const jwt = require("jsonwebtoken");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 const mongoose = require("mongoose");
@@ -10,7 +10,7 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    lenght: 14
+    //lenght: 14
   },
   title: {
     type: String,
@@ -155,9 +155,9 @@ function validateDoctor(doctor) {
   const schema = Joi.object().keys({
     //de al data ali h5lii user ed5lha
     ssn: Joi.string()
-      .required()
+      .required(),
       // .unique()
-      .lenght(14),
+      //.lenght(14),
     title: Joi.string()
     .required(),
     firstName: Joi.string()

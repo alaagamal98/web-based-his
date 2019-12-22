@@ -1,36 +1,47 @@
 const express = require("express");
 const router = express.Router();
+//const config = require("config");
+const Joi = require("joi");
+const mongoose = require("mongoose");
+const bcrypt =  require("bcryptjs")
+//const jwt = require("jsonwebtoken")
 const _ = require("lodash");
-const { Doctor, validateDoctor } = require("../models/doctor");
+const { Doctor } = require("../models/doctor");
 
-// create doctor
-router.post("/add_doctor", async (req, res) => {
-  // Validate The Request
-  const { error } = validateDoctor(req.body);
-  if (error) {
-    return res.status(400).send(error.details[0].message);
-  }
-  // Check if this doctor already exisits
+//create doctor
+ router.post("/add_doctor", async (req, res) => {
+ //Validate The Request
+const { error } = validateDoctor(req.body);
+ if (error) {
+   return res.status(400).send(error.details[0].message);
+ }
+//   //Check if this doctor already exisits
   let doctor = await Doctor.findOne({ ssn: req.body.ssn });
   if (doctor) {
     return res.status(400).send("That doctor already exisits!");
   } else {
-    // Insert the new doctor if they do not exist yet
-    doctor = new Doctor({
-      ssn: req.body.ssn,
-      title: req.body.title,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      gender: req.body.gender,
-      salary: req.body.salary,
-      phone_number: req.body.phone_number,
-      password: req.body.password
-    });
+//     
+    doctor =new Doctor(_.pick(req.body,[
+    'ssn',
+    'title',
+    'firstName',
+    'lastName',
+    'email',
+    'gender',
+    'salary',
+    'phone_number',
+    'password']));
+    //async function run(){
+    const salt = await bcrypt.genSalt(10);
+    doctor.password = await bcrypt.hash(doctor.password,salt);
     await doctor.save();
-    res.send(doctor);
+    res.send(_.pick(doctor, ['firstName','lastName','email','password'])); //ali berg3 ll user mn request
+
   }
+ 
 });
+  
+ 
 
 // delete
 
@@ -44,6 +55,8 @@ router.delete("/:id", async (req, res) => {
 });
 //..................
 
+//read
+
 router.get("/",async (req, res) => {
   const doctors = await Doctor.find().sort('firstName') ;
   res.send(doctors);
@@ -55,6 +68,7 @@ router.get("/:id",async (req, res) => {
   res.send(doctor);
 });
 
-// read
+  
+  module.exports = router;
 
-module.exports = router;
+

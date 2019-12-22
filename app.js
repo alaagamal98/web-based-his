@@ -1,7 +1,9 @@
-const config = require("config");
+//const config = require("config");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
-
+const bcrypt =  require("bcryptjs")
+//const jwt = require("jsonwebtoken")
+const _ = require("lodash");
 const mongoose = require("mongoose");
 const express = require("express");
 
@@ -14,8 +16,17 @@ const patients = require("./routes/patients");
 const medicines = require("./routes/medicines");
 const rooms = require("./routes/rooms");
 const feedbacks = require("./routes/feedbacks");
-const login = require("./routes/login");
+ const login = require("./routes/login");
 const app = express();
+
+
+//  if (!config.get('jwtprivatekey')){
+//    console.error('fatal error: jwtprivatekey is not defined ');
+//    process.exit(1);
+// }
+// in terminal set doctor_jwtprivatekey = my securekey
+// a run b3d kda
+
 
 // Database connection
 mongoose
@@ -34,7 +45,8 @@ app.use("/api/patients", patients);
 app.use("/api/doctors", doctors);
 app.use("/api/medicines", medicines);
 app.use("/api/feedbacks", feedbacks);
-app.use("/api/login", login);
+ app.use("/api/login", login);
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`listening on port ${port}...`));
