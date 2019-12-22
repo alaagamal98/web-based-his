@@ -93,23 +93,25 @@ const patientSchema = new mongoose.Schema({
       maxlength: 50
     }
   },
-  Doctor: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Doctor",
-    firstName: {
-      type: String,
-      required: true,
-      minlength: 2,
-      maxlength: 12
-    },
+  doctors: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Doctor"
+      // firstName: {
+      //   type: String,
+      //   required: true,
+      //   minlength: 2,
+      //   maxlength: 12
+      // },
 
-    lastName: {
-      type: String,
-      required: true,
-      minlength: 2,
-      maxlength: 12
+      // lastName: {
+      //   type: String,
+      //   required: true,
+      //   minlength: 2,
+      //   maxlength: 12
+      // }
     }
-  }
+  ]
 });
 
 patientSchema.methods.generateAuthToken = function() {

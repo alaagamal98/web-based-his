@@ -56,33 +56,35 @@ const doctorSchema = new mongoose.Schema({
     minlenght: 8
   },
 
-  Patient: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Patient",
-    firstName: {
-      type: String,
-      required: true
-    },
-    email: {
-      type: String,
-      required: true
-    },
-    password: {
-      type: String,
-      required: true,
-      minlenght: 8,
-      unique: true
-    },
-    history: {
-      type: String,
-      required: true
-    },
-    gender: {
-      type: String,
-      required: true,
-      enum: ["Male", "Female"]
+  Patients: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Patient"
+      // firstName: {
+      //   type: String,
+      //   required: true
+      // },
+      // email: {
+      //   type: String,
+      //   required: true
+      // },
+      // password: {
+      //   type: String,
+      //   required: true,
+      //   minlenght: 8,
+      //   unique: true
+      // },
+      // history: {
+      //   type: String,
+      //   required: true
+      // },
+      // gender: {
+      //   type: String,
+      //   required: true,
+      //   enum: ["Male", "Female"]
+      // }
     }
-  },
+  ],
   Medicine: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Medicine",
@@ -136,7 +138,7 @@ const doctorSchema = new mongoose.Schema({
 
 //doctorSchema.methods.generateAuthToken = function() {
 //  const token = jwt.sign({ _id: this._id }, config.get("jwtPrivateKey"));
- // return token;
+// return token;
 //};
 
 const Doctor = mongoose.model("Doctor", doctorSchema);
@@ -148,8 +150,7 @@ function validateDoctor(doctor) {
       .required()
       // .unique()
       .min(14),
-    title: Joi.string()
-    .required(),
+    title: Joi.string().required(),
     firstName: Joi.string()
       .required()
       .min(2)

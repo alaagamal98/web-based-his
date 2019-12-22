@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcryptjs");
 const _ = require("lodash");
 const { Patient, validate } = require("../models/patient");
 
@@ -13,7 +14,7 @@ router.post("/add_patient", async (req, res) => {
     return res.status(400).send(error.details[0].message);
   }
   // Check if already exisits
-  let patient = await Patient.findOne({ ssn: req.body.PatientSsn });
+  let patient = await Patient.findOne({ ssn: req.body.ssn });
   if (patient) {
     return res.status(400).send("That patient already exisits!");
   } else {
@@ -39,12 +40,21 @@ router.post("/add_patient", async (req, res) => {
   }
 });
 
+// Assign patient to a doctor
+router.post("/assign_patient/:id", async (req, res) => {
+  let patient = await Patient.findOne({ _id: req.params.id });
+
+  // patient.doctors.push(req.id);
+  console.log(req.body);
+});
+
 // delete patient
-//delete
-router.delete('/:id', async (req, res) => {
+// delete
+router.delete("/:id", async (req, res) => {
   const patient = await Patient.findByIdAndRemove(req.params.id);
 
-  if (!patient) return res.status(404).send('The patient with the given ID was not found.');
+  if (!patient)
+    return res.status(404).send("The patient with the given ID was not found.");
 
   res.send(patient);
 });
