@@ -6,18 +6,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-        <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-        <link rel="stylesheet" href="css/animate.css">
-        <link rel="stylesheet" href="css/owl.carousel.min.css">
-        <link rel="stylesheet" href="css/owl.theme.default.min.css">
-        <link rel="stylesheet" href="css/magnific-popup.css">
-        <link rel="stylesheet" href="css/aos.css">
-        <link rel="stylesheet" href="css/ionicons.min.css">
-        <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-        <link rel="stylesheet" href="css/jquery.timepicker.css">
-        <link rel="stylesheet" href="css/flaticon.css">
-        <link rel="stylesheet" href="css/icomoon.css">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="\ICU_Front_End\css\open-iconic-bootstrap.min.css">
+        <link rel="stylesheet" href="\ICU_Front_End\css\animate.css">
+        <link rel="stylesheet" href="\ICU_Front_End\css\owl.carousel.min.css">
+        <link rel="stylesheet" href="\ICU_Front_End\css\owl.theme.default.min.css">
+        <link rel="stylesheet" href="\ICU_Front_End\css\magnific-popup.css">
+        <link rel="stylesheet" href="\ICU_Front_End\css\aos.css">
+        <link rel="stylesheet" href="\ICU_Front_End\css\ionicons.min.css">
+        <link rel="stylesheet" href="\ICU_Front_End\css\bootstrap-datepicker.css">
+        <link rel="stylesheet" href="\ICU_Front_End\css\jquery.timepicker.css">
+        <link rel="stylesheet" href="\ICU_Front_End\css\flaticon.css">
+        <link rel="stylesheet" href="\ICU_Front_End\css\icomoon.css">
+        <link rel="stylesheet" href="\ICU_Front_End\css\style.css">
     </head>
 
     <body>
@@ -25,7 +25,7 @@
             <div class="container">
                 <div class="row no-gutters d-flex align-items-start align-items-center px-3 px-md-0">
                     <div class="col-md-4 order-md-2 mb-2 mb-md-0 align-items-center text-center">
-                        <a class="navbar-brand" href="index.html">ICU<span>Intensive Care Unit</span></a>
+                        <a class="navbar-brand" href="\ICU_Front_End\Home\home.html">ICU<span>Intensive Care Unit</span></a>
                     </div>
                     <div class="col-md-4 order-md-1 d-flex topper mb-md-0 mb-2 align-items-center text-md-right">
                         <div class="icon d-flex justify-content-center align-items-center order-md-last">
@@ -54,9 +54,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav m-auto">
-                        <li class="nav-item"><a href="doctor.html" class="nav-link">Doctors</a></li>
-                        <li class="nav-item"><a href="engineer.html" class="nav-link">Engineers</a></li>
-                        <li class="nav-item"><a href="room.html" class="nav-link">Rooms</a></li>
+						<li class="nav-item"><a href="\ICU_Front_End\Managers\Doctors\Nurses\nurse.html" class="nav-link">Nurses</a></li>
+						<li class="nav-item"><a href="\ICU_Front_End\Managers\Doctors\Patients\patient.html" class="nav-link">Patients</a></li>
+						<li class="nav-item"><a href="\ICU_Front_End\Managers\Doctors\Mediciens\medicine.html" class="nav-link">Mediciens</a></li>
                     </ul>
                 </div>
             </div>
@@ -67,8 +67,8 @@
             <div class="container">
                 <div class="row no-gutters slider-text align-items-center justify-content-center">
                     <div class="col-md-9 ftco-animate text-center">
-                        <h1 class="mb-2 bread">Doctor Details</h1>
-                        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Doctors <i class="ion-ios-arrow-forward"></i></span></p>
+                        <h1 class="mb-2 bread">Mediciens' Details</h1>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="\ICU_Front_End\Managers\Doctors\doc_page.html">Doctor's Page <i class="ion-ios-arrow-forward"></i></a></span> <span>Add Mediciens <i class="ion-ios-arrow-forward"></i></span></p>
                     </div>
                 </div>
             </div>
@@ -77,15 +77,15 @@
         <section class="ftco-section">
             <form style="margin: 0 auto; width:700px;" enctype="multipart/form-data" method="post" action="">
                 <fieldset>
-                    <legend>Add New Doctor</legend>
+                    <legend>Add New Medicien</legend>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">First Name</label>
-                            <input type="text" class="form-control" id="inputEmail4" placeholder="Enter your first name">
+                            <input type="text" name="firstname" class="form-control" id="inputEmail4" placeholder="Enter your first name">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Last Name</label>
-                            <input type="text" class="form-control" id="inputEmail4" placeholder="Enter your last name">
+                            <input type="text" name="lastname" class="form-control" id="inputEmail4" placeholder="Enter your last name">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">Password</label>
@@ -93,43 +93,44 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email">
                     </div>
                     <div class="form-group">
-                        <label for="inputAddress2">Address 2</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputState">State</label>
-                            <select id="inputState" class="form-control">
-                                <option selected>Choose...</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="inputZip">Zip</label>
-                            <input type="text" class="form-control" id="inputZip">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" for="gridCheck">
-                                Check me out
-                            </label>
-                        </div>
-                    </div>
+						<div class="d-flex">
+							<div class="dropdown mr-1">
+								<button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+								Gender
+								</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+									<a class="dropdown-item" href="#">Male</a>
+									<a class="dropdown-item" href="#">Female</a>
+								</div>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputCity">City</label>
+								<input type="text" class="form-control" id="inputCity">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputState">State</label>
+								<select id="inputState" class="form-control">
+									<option selected>Choose...</option>
+									<option>...</option>
+								</select>
+							</div>
+							<div class="form-group col-md-2">
+								<label for="inputZip">Zip</label>
+								<input type="text" class="form-control" id="inputZip">
+							</div>
+						</div>
+					</div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </fieldset>
             </form>
         </section>
-
+		
         <footer class="ftco-footer ftco-bg-dark ftco-section">
             <div class="container">
                 <div class="row mb-5">
@@ -153,9 +154,9 @@
                         <div class="ftco-footer-widget mb-5 ml-md-4">
                             <h2 class="ftco-heading-2">Links</h2>
                             <ul class="list-unstyled">
-                                <li><a href="index.html"><span class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
-                                <li><a href="about.html"><span class="ion-ios-arrow-round-forward mr-2"></span>About</a></li>
-                                <li><a href="contact.html"><span class="ion-ios-arrow-round-forward mr-2"></span>Contact Us</a></li>
+								<li class="nav-item"><a href="\ICU_Front_End\Managers\Doctors\Nurses\nurse.html" class="nav-link">Nurses</a></li>
+								<li class="nav-item"><a href="\ICU_Front_End\Managers\Doctors\Patients\patient.html" class="nav-link">Patients</a></li>
+								<li class="nav-item"><a href="\ICU_Front_End\Managers\Doctors\Mediciens\medicine.html" class="nav-link">Mediciens</a></li>
                             </ul>
                         </div>
                     </div>
@@ -182,22 +183,21 @@
         </div>
     
         <!-- Loading JavaScript Files -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/jquery-migrate-3.0.1.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.easing.1.3.js"></script>
-        <script src="js/jquery.waypoints.min.js"></script>
-        <script src="js/jquery.stellar.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/jquery.magnific-popup.min.js"></script>
-        <script src="js/aos.js"></script>
-        <script src="js/jquery.animateNumber.min.js"></script>
-        <script src="js/bootstrap-datepicker.js"></script>
-        <script src="js/jquery.timepicker.min.js"></script>
-        <script src="js/scrollax.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-        <script src="js/google-map.js"></script>
-        <script src="js/main.js"></script>    
+        <script src="\ICU_Front_End\js\jquery.min.js"></script>
+        <script src="\ICU_Front_End\js\jquery-migrate-3.0.1.min.js"></script>
+        <script src="\ICU_Front_End\js\popper.min.js"></script>
+        <script src="\ICU_Front_End\js\bootstrap.min.js"></script>
+        <script src="\ICU_Front_End\js\jquery.easing.1.3.js"></script>
+        <script src="\ICU_Front_End\js\jquery.waypoints.min.js"></script>
+        <script src="\ICU_Front_End\js\jquery.stellar.min.js"></script>
+        <script src="\ICU_Front_End\js\owl.carousel.min.js"></script>
+        <script src="\ICU_Front_End\js\jquery.magnific-popup.min.js"></script>
+        <script src="\ICU_Front_End\js\aos.js"></script>
+        <script src="\ICU_Front_End\js\jquery.animateNumber.min.js"></script>
+        <script src="\ICU_Front_End\js\bootstrap-datepicker.js"></script>
+        <script src="\ICU_Front_End\js\jquery.timepicker.min.js"></script>
+        <script src="\ICU_Front_End\js\scrollax.min.js"></script>
+        <script src="\ICU_Front_End\js\google-map.js"></script>
+        <script src="\ICU_Front_End\js\main.js"></script>   
     </body>
 </html>
