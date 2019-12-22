@@ -80,7 +80,7 @@ async function getMangers() {
 
 router.get("/", async (req, res) => {
   const managers = await Manger.find({});
-  res.render("frontend page", { managers: managers });
+  //res.render("frontend page", { managers: managers });
   res.send(managers);
 });
 

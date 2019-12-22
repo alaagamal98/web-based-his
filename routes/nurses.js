@@ -44,7 +44,7 @@ router.delete('/:id', async (req, res) => {
 
 router.get("/",async (req, res) => {
   const nurses = await Nurse.find({}) ;
-  res.render('frontend page',{nurses:nurses})
+  //res.render('frontend page',{nurses:nurses})
   res.send(nurses);
 });
 

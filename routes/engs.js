@@ -77,7 +77,7 @@ router.delete("/:id", async (req, res) => {
 
 router.get("/", async (req, res) => {
   const engs = await Eng.find().sort({});
-  res.render("frontend page", { engs: engs });
+ // res.render("frontend page", { engs: engs });
   res.send(engs);
 });
 

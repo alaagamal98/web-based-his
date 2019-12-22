@@ -49,7 +49,7 @@ async function getMedicines() {
 
   router.get("/",async (req, res) => {
     const medicines = await Medicine.find({}) ;
-    res.render('frontend page',{medicines:medicines})
+    //res.render('frontend page',{medicines:medicines})
     res.send(medicines);
   });
   

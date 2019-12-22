@@ -70,7 +70,7 @@ router.delete("/:id", async (req, res) => {
 
 router.get("/",async (req, res) => {
   const doctors = await Doctor.find({}) ;
-  res.render('frontend page',{doctors:doctors})
+  //res.render('frontend page',{doctors:doctors})
   res.send(doctors);
 });
 

@@ -114,7 +114,7 @@ router.delete("/:id", async (req, res) => {
 
 router.get("/", async (req, res) => {
   const patients = await Patient.find({});
-  res.render("frontend page", { patients: patients });
+ // res.render("frontend page", { patients: patients });
   res.send(patients);
 });
 

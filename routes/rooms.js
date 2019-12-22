@@ -18,7 +18,7 @@ router.delete('/:id', async (req, res) => {
 
 router.get("/",async (req, res) => {
   const rooms = await Room.find({}) ;
-  res.render('frontend page',{rooms:rooms})
+  //res.render('frontend page',{rooms:rooms})
   res.send(rooms);
 });
 
