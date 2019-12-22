@@ -23,35 +23,40 @@ router.post('/', async (req, res) => {
 
 	if (manger){
 
-  if (req.body.password != manger.password) return res.status(400).send('Invalid email or password.');
+    const validPassword = await bcrypt.compare(req.body.password, manger.password);
+    if (!validPassword) return res.status(400).send('Invalid email or password.');
 
   const token = manger.generateAuthToken();
   res.send(token);
   }
   else if (doctor){
 
-  if (req.body.password != doctor.password) return res.status(400).send('Invalid email or password.');
-
+    const validPassword = await bcrypt.compare(req.body.password, doctor.password);
+    if (!validPassword) return res.status(400).send('Invalid email or password.');
   //const token = doctor.generateAuthToken();
   res.send(doctor);
   }
   else if (nurse){
 
-  if (req.body.password != nurse.password) return res.status(400).send('Invalid email or password.');
+
+  const validPassword = await bcrypt.compare(req.body.password, nurse.password);
+  if (!validPassword) return res.status(400).send('Invalid email or password.');
 
   const token = nurse.generateAuthToken();
   res.send(token);
   }
   else if (eng){
 
-  if (req.body.password != eng.password) return res.status(400).send('Invalid email or password.');
+    const validPassword = await bcrypt.compare(req.body.password, eng.password);
+    if (!validPassword) return res.status(400).send('Invalid email or password.');
 
   const token = eng.generateAuthToken();
   res.send(token);
   }
   else if (patient){
 
-  if (req.body.password != patient.password) return res.status(400).send('Invalid email or password.');
+    const validPassword = await bcrypt.compare(req.body.password, patient.password);
+    if (!validPassword) return res.status(400).send('Invalid email or password.');
 
   const token = patient.generateAuthToken();
   res.send(token);

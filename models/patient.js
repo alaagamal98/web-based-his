@@ -111,8 +111,7 @@ const patientSchema = new mongoose.Schema({
       minlength: 3,
       maxlength: 50
     }
-  ]
-});
+}});
 
 patientSchema.methods.generateAuthToken = function() {
   const token = jwt.sign({ _id: this._id }, config.get("jwtPrivateKey"));

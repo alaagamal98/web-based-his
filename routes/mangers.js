@@ -4,6 +4,31 @@ const router = express.Router();
 const {Manger, validateManger} = require('../models/manger.js');
 
 // routes 
+
+
+router.put('/:id', async (req, res) => {
+  const { error } = validateManger(req.body); 
+  if (error) return res.status(400).send(error.details[0].message);
+
+  const manger = await Manger.findByIdAndUpdate(req.params.id,
+    { 
+      ssn: req.body.ssn,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      gender: req.body.gender,
+      salary: req.body.salary,
+      phone_number: req.body.phone_number,
+      password: req.body.password
+
+    }, { new: true });
+
+    if (!manger) return res.status(404).send('The manger with the given ID was not found.');
+  
+  res.send(manger);
+});
+
+
 //delete
 router.delete('/:id', async (req, res) => {
   const manger = await Manger.findByIdAndRemove(req.params.id);
@@ -21,7 +46,8 @@ async function getMangers() {
 
 
 router.get("/",async (req, res) => {
-  const managers = await Manger.find().sort('firstName') ;
+  const managers = await Manger.find({}) ;
+  res.render('frontend page',{managers:managers})
   res.send(managers);
 });
 

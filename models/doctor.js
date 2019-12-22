@@ -66,6 +66,12 @@ const doctorSchema = new mongoose.Schema({
       minlenght: 3,
       maxlenght:50
     },
+    lastName: {
+      type: String,
+      required: true,
+      minlenght: 3,
+      maxlenght:50
+    },
     email: {
       type: String,
       required: true,

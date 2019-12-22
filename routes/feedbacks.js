@@ -5,7 +5,8 @@ const {Feedback, validateFeedback} = require('../models/feedback');
 
 
 router.get("/",async (req, res) => {
-  const feedbacks = await Feedback.find() ;
+  const feedbacks = await Feedback.find({}) ;
+  res.render('frontend page',{feedbacks:feedbacks})
   res.send(doctors);
 });
 
