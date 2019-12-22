@@ -34,7 +34,7 @@ const doctorSchema = new mongoose.Schema({
     required: true,
     unique: true,
     minlenght: 5,
-    maxlenght: 255,
+    maxlenght: 255
   },
   gender: {
     type: String,
@@ -54,7 +54,7 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlenght: 5,
-    maxlength:1024
+    maxlength: 1024
   },
 
   Patient: {
@@ -126,8 +126,9 @@ const doctorSchema = new mongoose.Schema({
       required: true,
       unique: true,
       minlenght: 5,
-      maxlenght: 255,
-    },
+      maxlenght: 255
+    }
+  },
     Room: {
       // msh mot2kda de t5os dr wla la2??
 
@@ -139,12 +140,13 @@ const doctorSchema = new mongoose.Schema({
         enum: ["Empty", "Full"]
       }
     }
-  }
+  
+  
 });
 
 //doctorSchema.methods.generateAuthToken = function() {
 //  const token = jwt.sign({ _id: this._id }, config.get("jwtPrivateKey"));
- // return token;
+// return token;
 //};
 
 const Doctor = mongoose.model("Doctor", doctorSchema);
@@ -166,14 +168,20 @@ function validateDoctor(doctor) {
       .required()
       .min(3)
       .max(50),
-    email: Joi.string().min(5).max(255).required().email(),
+    email: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+      .email(),
     gender: Joi.string().required(),
     salary: Joi.number().required(),
     // phone_number: Joi.number([]).required(),
     phone_number: Joi.number().required(),
-    password: Joi.string().min(5).max(1024).required()
-    
-      
+    password: Joi.string()
+      .min(5)
+      .max(1024)
+      .required()
+
     // .unique()
   });
 
@@ -181,4 +189,4 @@ function validateDoctor(doctor) {
 }
 
 exports.Doctor = Doctor;
-exports.validate = validateDoctor;
+exports.validateDoctor = validateDoctor;

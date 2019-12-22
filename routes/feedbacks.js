@@ -4,25 +4,16 @@ const router = express.Router();
 const {Feedback, validateFeedback} = require('../models/feedback');
 
 
+router.get("/",async (req, res) => {
+  const feedbacks = await Feedback.find() ;
+  res.send(doctors);
+});
 
-async function getFeedbacks() {
-    return await Feedback;
-  }
-  
-  
-  router.get('/', (req, res) => {
-      const feedbacks = getFeedbacks();
-    res.send(feedbacks);
-  });
-  
-  
-  router.get('/:id', (req, res) => {
-      const feedbacks = getFeedbacks();
-    const feedback = feedbacks.find(c => c.id === parseInt(req.params.id));
-    if (!feedback) return res.status(404).send('The feedback with the given ID was not found.');
-    res.send(feedback);
-  });
-
+router.get("/:id",async (req, res) => {
+  const feedback = await Feedback.findById(req.params.id);
+  if (!feedback) return res.status(404).send("The feedback with the given ID was not found.");
+  res.send(feedback);
+});
 
 
 module.exports = router;

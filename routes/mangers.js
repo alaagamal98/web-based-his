@@ -19,20 +19,17 @@ async function getMangers() {
 }
 
 
-router.get('/', (req, res) => {
-	const mangers = getDoctors();
-  res.send(mangers);
+
+router.get("/",async (req, res) => {
+  const managers = await Manger.find().sort('firstName') ;
+  res.send(managers);
 });
 
-
-router.get('/:id', (req, res) => {
-	const mangers = getMangers();
-  const manger = mangers.find(c => c.id === parseInt(req.params.id));
-  if (!manger) return res.status(404).send('The manger with the given ID was not found.');
-  res.send(manger);
+router.get("/:id",async (req, res) => {
+  const manager = await Manger.findById(req.params.id);
+  if (!manager) return res.status(404).send("The manager with the given ID was not found.");
+  res.send(manager);
 });
-
-
 
 
 
