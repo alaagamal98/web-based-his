@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const bcrypt =  require("bcryptjs")
 //const jwt = require("jsonwebtoken")
 const _ = require("lodash");
-const { Doctor } = require("../models/doctor");
+const { Doctor, validateDoctor } = require("../models/doctor");
 
 //create doctor
  router.post("/add_doctor", async (req, res) => {
@@ -31,17 +31,41 @@ const { error } = validateDoctor(req.body);
     'salary',
     'phone_number',
     'password']));
-    //async function run(){
+   
     const salt = await bcrypt.genSalt(10);
     doctor.password = await bcrypt.hash(doctor.password,salt);
     await doctor.save();
-    res.send(_.pick(doctor, ['firstName','lastName','email','password'])); //ali berg3 ll user mn request
+    res.send(_.pick(doctor,['firstName','lastName','email','password'])); //ali berg3 ll user mn request
 
   }
  
 });
   
  
+
+
+router.put('/:id', async (req, res) => {
+  const { error } = validateDoctor(req.body); 
+  if (error) return res.status(400).send(error.details[0].message);
+
+  const doctor = await Doctor.findByIdAndUpdate(req.params.id,
+    { 
+      ssn: req.body.ssn,
+      title: req.body.title,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      gender: req.body.gender,
+      salary: req.body.salary,
+      phone_number: req.body.phone_number,
+      password: req.body.password
+
+    }, { new: true });
+
+    if (!doctor) return res.status(404).send('The doctor with the given ID was not found.');
+  
+  res.send(doctor);
+});
 
 // delete
 
@@ -58,7 +82,8 @@ router.delete("/:id", async (req, res) => {
 //read
 
 router.get("/",async (req, res) => {
-  const doctors = await Doctor.find().sort('firstName') ;
+  const doctors = await Doctor.find({}) ;
+  //res.render('frontend page',{doctors:doctors})
   res.send(doctors);
 });
 

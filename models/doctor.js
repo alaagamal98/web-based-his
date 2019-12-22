@@ -64,20 +64,26 @@ const doctorSchema = new mongoose.Schema({
       type: String,
       required: true,
       minlenght: 3,
-      maxlenght:50
+      maxlenght: 50
+    },
+    lastName: {
+      type: String,
+      required: true,
+      minlenght: 3,
+      maxlenght: 50
     },
     email: {
       type: String,
       required: true,
       unique: true,
       minlenght: 5,
-      maxlenght: 255,
+      maxlenght: 255
     },
     password: {
       type: String,
       required: true,
       minlenght: 5,
-      maxlenght:1024
+      maxlenght: 1024
     },
     history: {
       type: String,
@@ -129,19 +135,17 @@ const doctorSchema = new mongoose.Schema({
       maxlenght: 255
     }
   },
-    Room: {
-      // msh mot2kda de t5os dr wla la2??
+  Room: {
+    // msh mot2kda de t5os dr wla la2??
 
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Room",
-      vacancyOfRoom: {
-        type: String,
-        requied: true,
-        enum: ["Empty", "Full"]
-      }
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Room",
+    vacancyOfRoom: {
+      type: String,
+      requied: true,
+      enum: ["Empty", "Full"]
     }
-  
-  
+  }
 });
 
 //doctorSchema.methods.generateAuthToken = function() {
@@ -155,11 +159,10 @@ function validateDoctor(doctor) {
   const schema = Joi.object().keys({
     //de al data ali h5lii user ed5lha
     ssn: Joi.string()
-      .required(),
+      .required()
       // .unique()
-      //.lenght(14),
-    title: Joi.string()
-    .required(),
+      .length(14),
+    title: Joi.string().required(),
     firstName: Joi.string()
       .required()
       .min(3)

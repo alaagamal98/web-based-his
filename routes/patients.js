@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
 const _ = require("lodash");
+const bcrypt = require("bcryptjs");
 const { Patient, validate } = require("../models/patient");
-const { Doctor, validateDoctor } = require("../models/doctor");
+//const { Doctor, validateDoctor } = require("../models/doctor");
 
 // routes
 
-// create patient
+// Add patient
 router.post("/add_patient", async (req, res) => {
   // Validate The Request
   const { error } = validate(req.body);
@@ -62,27 +62,66 @@ router.post("/assign_patient/:id", async (req, res) => {
   }
 });
 
-// delete patient
-// delete
-router.delete("/:id", async (req, res) => {
-  const patient = await Patient.findByIdAndRemove(req.params.id);
+router.put("/:id", async (req, res) => {
+  const { error } = validate(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  const patient = await Eng.findByIdAndUpdate(
+    req.params.id,
+    {
+      ssn: req.body.ssn,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      gender: req.body.gender,
+      Dep_phone_number: req.body.Dep_phone_number,
+      password: req.body.password,
+      history: req.body.history,
+      entryDate: req.body.entryDate,
+      exitDate: req.body.exitDate
+    },
+    { new: true }
+  );
 
   if (!patient)
     return res.status(404).send("The patient with the given ID was not found.");
 
   res.send(patient);
 });
-//..................
 
+// delete patient
+router.delete("/:id", async (req, res) => {
+  // const patient = await Patient.findByIdAndRemove(req.params.id);
 
-router.get("/",async (req, res) => {
-  const patients = await Patient.find().sort('firstName') ;
+  // if (!patient)
+  //   return res.status(404).send("The patient with the given ID was not found.");
+  let doctor = await Doctor.find({});
+  let index = _.find(doctor.Patients, element => {
+    return element == req.params.id;
+  });
+  if (index != undefined) {
+    doctor.Patients.pull(req.params.id);
+    await doctor.save();
+    console.log(req.body);
+  }
+  // } else {
+  //   doctor.Patients.pull(req.body._id);
+  //   await doctor.save();
+  // }
+  const patient = await Patient.findByIdAndRemove(req.params.id);
+  res.send(patient);
+});
+
+router.get("/", async (req, res) => {
+  const patients = await Patient.find({});
+ // res.render("frontend page", { patients: patients });
   res.send(patients);
 });
 
-router.get("/:id",async (req, res) => {
+router.get("/:id", async (req, res) => {
   const patient = await Patient.findById(req.params.id);
-  if (!patient) return res.status(404).send("The patient with the given ID was not found.");
+  if (!patient)
+    return res.status(404).send("The patient with the given ID was not found.");
   res.send(patient);
 });
 module.exports = router;
