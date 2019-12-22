@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
 const _ = require("lodash");
 const { Patient, validate } = require("../models/patient");
 const { Doctor, validateDoctor } = require("../models/doctor");
 
 // routes
 
-// create patient
+// Add patient
 router.post("/add_patient", async (req, res) => {
   // Validate The Request
   const { error } = validate(req.body);
@@ -62,17 +61,28 @@ router.post("/assign_patient/:id", async (req, res) => {
   }
 });
 
-// delete patient
-// delete
+// Delete patient
 router.delete("/:id", async (req, res) => {
+  // const patient = await Patient.findByIdAndRemove(req.params.id);
+
+  // if (!patient)
+  //   return res.status(404).send("The patient with the given ID was not found.");
+  let doctor = await Doctor.find({});
+  let index = _.find(doctor.Patients, element => {
+    return element == req.params.id;
+  });
+  if (index != undefined) {
+    doctor.Patients.pull(req.params.id);
+    await doctor.save();
+    console.log(req.body);
+  }
+  // } else {
+  //   doctor.Patients.pull(req.body._id);
+  //   await doctor.save();
+  // }
   const patient = await Patient.findByIdAndRemove(req.params.id);
-
-  if (!patient)
-    return res.status(404).send("The patient with the given ID was not found.");
-
   res.send(patient);
 });
-//..................
 
 async function getPatients() {
   return await Patient;

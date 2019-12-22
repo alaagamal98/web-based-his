@@ -10,7 +10,7 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    lenght: 255
+    lenght: 10
   },
   title: {
     type: String,
@@ -157,7 +157,7 @@ function validateDoctor(doctor) {
     ssn: Joi.string()
       .required()
       // .unique()
-      .min(255),
+      .min(10),
     title: Joi.string().required(),
     firstName: Joi.string()
       .required()

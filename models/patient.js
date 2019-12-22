@@ -9,7 +9,7 @@ const patientSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    length: 255
+    length: 10
   },
   firstName: {
     type: String,
@@ -128,7 +128,7 @@ function validatePatient(patient) {
     ssn: Joi.string()
       .required()
       //.unique()
-      .length(255),
+      .length(10),
     firstName: Joi.string()
       .required()
       .min(5)
