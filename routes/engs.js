@@ -36,7 +36,6 @@ router.post("/add_eng", async (req, res) => {
     res.send(eng);
   }
 });
-// routes
 
 router.put("/:id", async (req, res) => {
   const { error } = validateEng(req.body);
@@ -83,7 +82,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const eng = await Doctor.findById(req.params.id);
+  const eng = await Eng.findById(req.params.id);
   if (!eng)
     return res
       .status(404)

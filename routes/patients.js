@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const _ = require("lodash");
+const bcrypt = require("bcryptjs");
 const { Patient, validate } = require("../models/patient");
 const { Doctor, validateDoctor } = require("../models/doctor");
 
