@@ -74,9 +74,7 @@ router.delete("/:id", async (req, res) => {
 });
 //.................
 
-async function getMangers() {
-  return await Manger;
-}
+
 
 router.get("/", async (req, res) => {
   const managers = await Manger.find({});

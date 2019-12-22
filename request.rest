@@ -53,6 +53,23 @@ content-type: application/json
 
 ###
 
+
+POST http://localhost:3000/api/nurses/add_nurse
+content-type: application/json
+
+{
+        "ssn":"12345678901111",
+        "salary":1234,
+        "phone_number":12345,
+        "firstName":"something",
+        "lastName":"something",
+        "email":"something4@gmail.com",
+        "gender":"Male",
+        "password":"12345678"
+}
+
+###
+
 POST http://localhost:3000/api/equipments/add_equipment
 content-type: application/json
 
@@ -94,7 +111,29 @@ content-type: application/json
 }
 
 ###
+POST http://localhost:3000/api/medicines/add_medicine
+content-type: application/json
 
+{       "name":"something2",
+        "quantity":4,
+        "date":"2019-1-2",
+        "dose":"something",
+        "price":2000,
+        "replacements":"something"
+}
+
+###
+POST http://localhost:3000/api/rooms/add_room
+content-type: application/json
+
+{      
+   "room_number":"1233",
+        "vacancyOfRoom":"Empty",
+        "numberOfEquipment":10,
+        "nameOfEquipment":"something"
+}
+
+###
 POST http://localhost:3000/api/patients/assign_patient/5dff398d86a62a4740253a52
 content-type: application/json
 
