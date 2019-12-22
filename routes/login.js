@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
   const token = manger.generateAuthToken();
-  res.send(token);
+  res.render("ICU Front_End\Managers\manager_page.html");
   }
   else if (doctor){
 
