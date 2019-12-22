@@ -9,19 +9,19 @@ const patientSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    length: 255
+    length: 14
   },
   firstName: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: 3,
     maxlength: 50
   },
 
   lastName: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: 3,
     maxlength: 50
   },
   email: {
@@ -86,13 +86,13 @@ const patientSchema = new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
-      minlength: 5,
+      minlength: 3,
       maxlength: 50
     },
     lastName: {
       type: String,
       required: true,
-      minlength: 5,
+      minlength: 3,
       maxlength: 50
     }
   },
@@ -102,14 +102,14 @@ const patientSchema = new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
-      minlength: 5,
+      minlength: 3,
       maxlength: 50
     },
 
     lastName: {
       type: String,
       required: true,
-      minlength: 5,
+      minlength: 3,
       maxlength: 50
     }
   }
@@ -128,14 +128,14 @@ function validatePatient(patient) {
     ssn: Joi.string()
       .required()
       //.unique()
-      .length(255),
+      .length(14),
     firstName: Joi.string()
       .required()
-      .min(5)
+      .min(3)
       .max(50),
     lastName: Joi.string()
       .required()
-      .min(5)
+      .min(3)
       .max(50),
     email: Joi.string().required().email(),
     

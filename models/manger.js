@@ -8,20 +8,20 @@ const mangerSchema = new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
-      minlength: 5,
+      minlength: 3,
       maxlength: 50
     },
     lastName: {
       type: String,
       required: true,
-      minlength: 5,
+      minlength: 3,
       maxlength: 50
     },
     ssn: {
       type: String,
       required: true,
       unique: true,
-      length: 255
+      length: 14
       
     },
     email: {
@@ -84,17 +84,17 @@ const Manger = mongoose.model('Manger', mangerSchema);
   function validateManger(manger) {
     const schema =Joi.object().keys({
       firstName: Joi.string()
-      .min(5)
+      .min(3)
       .max(50)
       .required(),
       lastName: Joi.string()
-      .min(5)
+      .min(3)
       .max(50)
       .required(),
       ssn: Joi.string()
       .required()
       //.unique()
-      .length(255),
+      .length(14),
       email: Joi.string()
       .required()
       .email()

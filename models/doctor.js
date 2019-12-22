@@ -10,7 +10,7 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    lenght: 255
+    lenght: 14
   },
   title: {
     type: String,
@@ -19,14 +19,14 @@ const doctorSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
-    minlenght: 5,
+    minlenght: 3,
     maxlenght: 50
   },
 
   lastName: {
     type: String,
     required: true,
-    minlenght: 5,
+    minlenght: 3,
     maxlenght: 50
   },
   email: {
@@ -63,7 +63,7 @@ const doctorSchema = new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
-      minlenght: 5,
+      minlenght: 3,
       maxlenght:50
     },
     email: {
@@ -112,13 +112,13 @@ const doctorSchema = new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
-      minlength: 5,
+      minlength: 3,
       maxlength: 50
     },
     lastName: {
       type: String,
       required: true,
-      minlength: 5,
+      minlength: 3,
       maxlength: 50
     },
     email: {
@@ -155,16 +155,16 @@ function validateDoctor(doctor) {
     ssn: Joi.string()
       .required()
       // .unique()
-      .min(255),
+      .lenght(14),
     title: Joi.string()
     .required(),
     firstName: Joi.string()
       .required()
-      .min(5)
+      .min(3)
       .max(50),
     lastName: Joi.string()
       .required()
-      .min(5)
+      .min(3)
       .max(50),
     email: Joi.string().min(5).max(255).required().email(),
     gender: Joi.string().required(),
