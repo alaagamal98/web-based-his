@@ -79,6 +79,22 @@ content-type: application/json
 
 ###
 
+POST http://localhost:3000/api/mangers/add_manger
+content-type: application/json
+
+{
+        "ssn":"12345678901111",
+        "salary":1234,
+        "phone_number":12345,
+        "firstName":"something",
+        "lastName":"something",
+        "email":"something4@gmail.com",
+        "gender":"Male",
+        "password":"12345678"
+}
+
+###
+
 POST http://localhost:3000/api/patients/assign_patient/5dff398d86a62a4740253a52
 content-type: application/json
 
