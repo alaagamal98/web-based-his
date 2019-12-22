@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const _ = require("lodash");
-const { Doctor, validate } = require("../models/doctor");
+const { Doctor, validateDoctor } = require("../models/doctor");
 
 // create doctor
 router.post("/add_doctor", async (req, res) => {
   // Validate The Request
-  const { error } = validate(req.body);
+  const { error } = validateDoctor(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
@@ -34,10 +34,11 @@ router.post("/add_doctor", async (req, res) => {
 
 // delete
 
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   const doctor = await Doctor.findByIdAndRemove(req.params.id);
 
-  if (!doctor) return res.status(404).send('The doctor with the given ID was not found.');
+  if (!doctor)
+    return res.status(404).send("The doctor with the given ID was not found.");
 
   res.send(doctor);
 });

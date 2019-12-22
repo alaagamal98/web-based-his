@@ -25,11 +25,11 @@ const Room = mongoose.model(
 function validateRoom(room) {
     const schema =Joi.object().keys({
         //de al data ali h5lii user ed5lha
-        RoomvacancyOfRoom: Joi.boolean()
+        vacancyOfRoom: Joi.boolean()
         .required(),
-        RoomnumberOfEquipment: Joi.number()
+        numberOfEquipment: Joi.number()
         .required(),
-        RoomnameOfEquipment: Joi.ntring()
+       nameOfEquipment: Joi.ntring()
         .required(),
        
     });

@@ -8,26 +8,28 @@ const engSchema =new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
-      minlength: 2,
+      minlength: 5,
       maxlength: 50
     },
     lastName: {
       type: String,
       required: true,
-      minlength: 2,
+      minlength: 5,
       maxlength: 50
     },
     ssn: {
       type: String,
       required: true,
       unique: true,
-      length: 14
+      length: 255
      
     },
     email: {
       type: String,
-      required: true,
-      unique: true
+    required: true,
+    unique: true,
+    minlenght: 5,
+    maxlenght: 255,
     },
     gender: {
       type: String,
@@ -41,13 +43,14 @@ const engSchema =new mongoose.Schema({
     phone_number: {
       type: [{ type: Number }], // array of numbers
       required: true,
-      minlength:11
+     
     },
     password: {
       type: String,
-      minlength:(8),
+      minlength:5,
+      maxlenght: 1024,
       required: true,
-      unique: true
+  
      
     },
     Room:{
@@ -72,19 +75,21 @@ const engSchema =new mongoose.Schema({
       firstName: {
         type: String,
         required: true,
-        minlength: 2,
+        minlength: 5,
         maxlength: 50
       },
       lastName: {
         type: String,
         required: true,
-        minlength: 2,
+        minlength: 5,
         maxlength: 50
       },
       email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        minlenght: 5,
+        maxlenght: 255,
       },
     }
   })
@@ -101,19 +106,20 @@ const Eng = mongoose.model('Eng', engSchema);
   function validateEng(eng) {
     const schema = Joi.object().keys({
       firstName: Joi.string()
-      .min(2)
+      .min(5)
       .max(50)
       .required(),
       lastName: Joi.string()
-      .min(2)
+      .min(5)
       .max(50)
       .required(),
       ssn: Joi.String()
       .required()
       //.unique()
-      .length(14),
+      .length(255),
       email: Joi.string()
-      .required(),
+      .required()
+      .email(),
       //.unique(),
       gender: Joi.string()
       .required()
@@ -121,10 +127,10 @@ const Eng = mongoose.model('Eng', engSchema);
       salary: Joi.number()
       .required(),
       phone_number: Joi.number()
-      .min(11)
       .required(),
       password: Joi.string()
-      .min(8)
+      .min(5)
+      .max(1024)
       .required()
     })
     

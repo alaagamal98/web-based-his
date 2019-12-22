@@ -6,10 +6,10 @@ POST http://localhost:3000/api/patients/add_patient
 content-type: application/json
 
 {
-        "ssn":"11111111111121",
+        "ssn":"12345678901231",
         "firstName":"something",
         "lastName":"something",
-        "email":"something@gmail.com",
+        "email":"something4@gmail.com",
         "gender":"Male",
         "Dep_phone_number":"123456789011111",
         "password":"12345678",
@@ -17,3 +17,33 @@ content-type: application/json
       "entryDate":"2017-09-14",
         "exitDate":"2017-09-14"
 }
+
+###
+
+POST http://localhost:3000/api/doctors/add_doctor
+content-type: application/json
+
+{
+        "ssn":"12345678901236",
+        "title":"something",
+        "salary":1234,
+        "phone_number":12345,
+        "firstName":"something",
+        "lastName":"something",
+        "email":"something3@gmail.com",
+        "gender":"Male",
+        "password":"12345678"
+}
+
+###
+
+POST http://localhost:3000/api/patients/assign_patient/5dff23d4b40a8c3dc856988a
+content-type: application/json
+
+{
+      "_id":"5dff23afb40a8c3dc8569889"
+}
+
+###
+
+GET http://localhost:3000/api/patients/5dff0fc6cf002b5c200804e3

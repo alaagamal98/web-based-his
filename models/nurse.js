@@ -9,26 +9,28 @@ const nurseSchema = new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
-      minlength: 2,
+      minlength: 5,
       maxlength: 50
     },
     lastName: {
       type: String,
       required: true,
-      minlength: 2,
+      minlength: 5,
       maxlength: 50
     },
     ssn: {
       type: String,
       required: true,
       unique: true,
-      length: 14
+      length: 255
     
     },
     email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
+      minlenght: 5,
+      maxlenght: 255,
     },
     gender: {
       type: String,
@@ -42,13 +44,13 @@ const nurseSchema = new mongoose.Schema({
     phone_number: {
       type: [{ type: Number }], // array of numbers
       required: true,
-      minlenght: 11
+     
     },
     password: {
       type: String,
       required: true,
-      unique: true,
-      minlenght: 8
+      maxlenght: 1024,
+      minlenght: 5
     },
 
     Doctor:{
@@ -57,15 +59,15 @@ const nurseSchema = new mongoose.Schema({
       firstName: {
         type: String,
         required: true,
-        minlenght: 2,
-        maxlenght: 12
+        minlenght: 5,
+        maxlenght: 50
       },
       
       lastName: {
         type: String,
         required: true,
-        minlenght: 2,
-        maxlenght: 12
+        minlenght: 5,
+        maxlenght: 50
       },
       phone_number: { //number wla string??
         type: [{ type: Number}], // array of numbers
@@ -78,19 +80,21 @@ const nurseSchema = new mongoose.Schema({
       firstName: {
         type: String,
         required: true,
-        minlength: 2,
+        minlength: 5,
         maxlength: 50
       },
       lastName: {
         type: String,
         required: true,
-        minlength: 2,
+        minlength: 5,
         maxlength: 50
       },
       email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        minlenght: 5,
+        maxlenght: 255,
       },
     },
     Room:{
@@ -108,15 +112,15 @@ const nurseSchema = new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
-      minlenght: 2,
-      maxlenght: 12
+      minlenght: 5,
+      maxlenght: 50
     },
     
     lastName: {
       type: String,
       required: true,
-      minlenght: 2,
-      maxlenght: 12
+      minlenght: 5,
+      maxlenght: 50
     },
     Dep_phone_number: {
       type: [{ type: Number }],
@@ -173,19 +177,22 @@ const Nurse = mongoose.model('Nurse', nurseSchema);
   function validateNurse(nurse) {
     const schema =Joi.object().keys({
       firstName: Joi.string()
-      .min(2)
+      .min(5)
       .max(50)
       .required(),
       lastName: Joi.string()
-      .min(2)
+      .min(5)
       .max(50)
       .required(),
       ssn: Joi.string()
       .required()
       //.unique()
-      .length(14),
+      .length(255),
       email: Joi.string()
-      .required(),
+      .required()
+      .min(5)
+      .max(255)
+      .email(),
       //.unique(),
       gender: Joi.string()
       .required()
@@ -193,12 +200,12 @@ const Nurse = mongoose.model('Nurse', nurseSchema);
       salary: Joi.number()
       .required(),
       phone_number: Joi.number()
-      .min(11)
       .required(),
       password: Joi.string()
-      .min(8)
+      .min(5)
+      .max(1024)
       .required(),
-      //.unique()
+      
     });
   
     return Joi.validate(nurse, schema);
