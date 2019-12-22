@@ -38,17 +38,17 @@ const Medicine = mongoose.model(
     function validateMedicine(medicine) {
     const schema =Joi.object().keys({
         //de al data ali h5lii user ed5lha
-        MedicineName: Joi.string()
+        name: Joi.string()
         .required(),
-        MedicineQuantity:Joi.number()
+        quantity:Joi.number()
         .required(),
-        MedicineDate: Joi.date()
+        date: Joi.date()
         .required(),
-        MedicineDose: Joi.string()
+        dose: Joi.string()
         .required(),
-        MedicinePrice: Joi.number()
+        price: Joi.number()
         .required(),
-       MedicineReplacements: Joi.string()
+       replacements: Joi.string()
        .required()
     });
     

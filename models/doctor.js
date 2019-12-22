@@ -10,7 +10,7 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    lenght: 14
+    lenght: 255
   },
   title: {
     type: String,
@@ -19,22 +19,22 @@ const doctorSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
-    minlenght: 2,
-    maxlenght: 12
+    minlenght: 5,
+    maxlenght: 50
   },
 
   lastName: {
     type: String,
     required: true,
-    minlenght: 2,
-    maxlenght: 12
+    minlenght: 5,
+    maxlenght: 50
   },
   email: {
     type: String,
     required: true,
     unique: true,
-    minlenght: 2,
-    maxlenght: 12
+    minlenght: 5,
+    maxlenght: 255
   },
   gender: {
     type: String,
@@ -53,36 +53,42 @@ const doctorSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minlenght: 8
+    minlenght: 5,
+    maxlength: 1024
   },
 
   Patients: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Patient"
-      // firstName: {
-      //   type: String,
-      //   required: true
-      // },
-      // email: {
-      //   type: String,
-      //   required: true
-      // },
-      // password: {
-      //   type: String,
-      //   required: true,
-      //   minlenght: 8,
-      //   unique: true
-      // },
-      // history: {
-      //   type: String,
-      //   required: true
-      // },
-      // gender: {
-      //   type: String,
-      //   required: true,
-      //   enum: ["Male", "Female"]
-      // }
+      ref: "Patient",
+      firstName: {
+        type: String,
+        required: true,
+        minlenght: 5,
+        maxlenght: 50
+      },
+      email: {
+        type: String,
+        required: true,
+        unique: true,
+        minlenght: 5,
+        maxlenght: 255
+      },
+      password: {
+        type: String,
+        required: true,
+        minlenght: 5,
+        maxlenght: 1024
+      },
+      history: {
+        type: String,
+        required: true
+      },
+      gender: {
+        type: String,
+        required: true,
+        enum: ["Male", "Female"]
+      }
     }
   ],
   Medicine: {
@@ -108,19 +114,21 @@ const doctorSchema = new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
-      minlength: 2,
+      minlength: 5,
       maxlength: 50
     },
     lastName: {
       type: String,
       required: true,
-      minlength: 2,
+      minlength: 5,
       maxlength: 50
     },
     email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
+      minlenght: 5,
+      maxlenght: 255
     },
     Room: {
       // msh mot2kda de t5os dr wla la2??
@@ -149,24 +157,30 @@ function validateDoctor(doctor) {
     ssn: Joi.string()
       .required()
       // .unique()
-      .min(14),
+      .min(255),
     title: Joi.string().required(),
     firstName: Joi.string()
       .required()
-      .min(2)
-      .max(12),
+      .min(5)
+      .max(50),
     lastName: Joi.string()
       .required()
-      .min(2)
-      .max(12),
-    email: Joi.string().required(),
+      .min(5)
+      .max(50),
+    email: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+      .email(),
     gender: Joi.string().required(),
     salary: Joi.number().required(),
     // phone_number: Joi.number([]).required(),
     phone_number: Joi.number().required(),
     password: Joi.string()
+      .min(5)
+      .max(1024)
       .required()
-      .min(8)
+
     // .unique()
   });
 

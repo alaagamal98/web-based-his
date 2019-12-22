@@ -9,25 +9,27 @@ const patientSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    length: 14
+    length: 255
   },
   firstName: {
     type: String,
     required: true,
-    minlength: 2,
-    maxlength: 12
+    minlength: 5,
+    maxlength: 50
   },
 
   lastName: {
     type: String,
     required: true,
-    minlength: 2,
-    maxlength: 12
+    minlength: 5,
+    maxlength: 50
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    minlenght: 5,
+    maxlenght: 255
   },
   gender: {
     type: String,
@@ -36,13 +38,13 @@ const patientSchema = new mongoose.Schema({
   },
   Dep_phone_number: {
     type: [{ type: Number }],
-    required: true,
-    minlength: 11
+    required: true
   },
   password: {
     type: String,
     required: true,
-    minlength: 8
+    minlength: 5,
+    maxlength: 1024
   },
   history: {
     type: String,
@@ -83,33 +85,32 @@ const patientSchema = new mongoose.Schema({
     firstName: {
       type: String,
       required: true,
-      minlength: 2,
+      minlength: 5,
       maxlength: 50
     },
     lastName: {
       type: String,
       required: true,
-      minlength: 2,
+      minlength: 5,
       maxlength: 50
     }
   },
   Doctors: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Doctor"
-      // firstName: {
-      //   type: String,
-      //   required: true,
-      //   minlength: 2,
-      //   maxlength: 12
-      // },
-
-      // lastName: {
-      //   type: String,
-      //   required: true,
-      //   minlength: 2,
-      //   maxlength: 12
-      // }
+      ref: "Doctor",
+      firstName: {
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 50
+      },
+      lastName: {
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 50
+      }
     }
   ]
 });
@@ -127,26 +128,27 @@ function validatePatient(patient) {
     ssn: Joi.string()
       .required()
       //.unique()
-      .length(14),
+      .length(255),
     firstName: Joi.string()
       .required()
-      .min(2)
-      .max(12),
+      .min(5)
+      .max(50),
     lastName: Joi.string()
       .required()
-      .min(2)
-      .max(12),
-    email: Joi.string().required(),
-    //.unique(),
+      .min(5)
+      .max(50),
+    email: Joi.string()
+      .required()
+      .email(),
+
     gender: Joi.string().required(),
     // .enum(),
-    Dep_phone_number: Joi.string()
-      .required()
-      .min(11),
+    Dep_phone_number: Joi.string().required(),
+
     password: Joi.string()
       .required()
-      .length(8),
-    //.unique(),
+      .min(5)
+      .max(1024),
     history: Joi.string().required(),
     entryDate: Joi.date().required(),
     exitDate: Joi.date().required()
