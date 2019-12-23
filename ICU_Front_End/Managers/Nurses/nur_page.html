@@ -1,3 +1,4 @@
+<!-- Should open for nurse login only -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,68 +55,47 @@
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav m-auto">
-                        <li class="nav-item"><a href="\ICU_Front_End\Managers\Doctors\doctor_page.html" class="nav-link">Doctors</a></li>
-                        <li class="nav-item"><a href="\ICU_Front_End\Managers\Engineers\engineer_page.html" class="nav-link">Engineers</a></li>
-                        <li class="nav-item"><a href="\ICU_Front_End\Managers\Equipments\equipment_page.html" class="nav-link">Equipments</a></li>
-                        <li class="nav-item"><a href="\ICU_Front_End\Managers\Nurses\nurse_page.html" class="nav-link">Nurses</a></li>
-                        <li class="nav-item"><a href="\ICU_Front_End\Managers\Rooms\room_page.html" class="nav-link">Rooms</a></li>
-                        <li class="nav-item"><a href="\ICU_Front_End\Managers\Patients\patient_page.html" class="nav-link">Patients</a></li>
+						<li class="nav-item"><a href="\ICU_Front_End\Managers\Engineers\Equipments\equipment.html" class="nav-link">Equipments</a></li>
+						<li class="nav-item"><a href="\ICU_Front_End\Managers\Engineers\Rooms\room.html" class="nav-link">Rooms</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     
-        <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row no-gutters slider-text align-items-center justify-content-center">
-                    <div class="col-md-9 ftco-animate text-center">
-                        <h1 class="mb-2 bread">Doctors' Details</h1>
-                        <p class="breadcrumbs"><span class="mr-2"><a href="\ICU_Front_End\Managers\manager_page.html">Manager's Page <i class="ion-ios-arrow-forward"></i></a></span> <span>View Doctors <i class="ion-ios-arrow-forward"></i></span></p>
+        <section class="home-slider owl-carousel">
+            <div class="slider-item" style="background-image:url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row no-gutters slider-text align-items-center justify-content-end" data-scrollax-parent="true">
+                        <div class="col-md-6 text ftco-animate">
+                            <h1 class="mb-4">Helping You <span>Stay Happy One</span></h1>
+                            <h3 class="subheading">Everyday We Bring Hope and Smile to the Patient We Serve</h3>
+                            <p><a href="#" class="btn btn-secondary px-4 py-3 mt-3">View our works</a></p>
+                        </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="slider-item" style="background-image:url(images/bg_2.jpg);">
+                <div class="overlay"></div>
+                    <div class="container">
+                        <div class="row no-gutters slider-text align-items-center justify-content-end" data-scrollax-parent="true">
+                            <div class="col-md-6 text ftco-animate">
+                                <h1 class="mb-4">Smile Makes <br>A Lasting Impression</h1>
+                                <h3 class="subheading">Your Health is Our Top Priority with Comprehensive, Affordable medical.</h3>
+                                <p><a href="#" class="btn btn-secondary px-4 py-3 mt-3">View our works</a></p>
+                            </div>
+                        </div>
                 </div>
             </div>
         </section>
 
-        <section id="tabs" class="project-tab">
+        <section class="ftco-section intro" style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
-                        <nav>
-                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Doctors' Data</a>
-                            </div>
-                        </nav>
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <table class="table" cellspacing="0">
-                                    <thead>
-                                        <tr>
-											<th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>SSN</th>
-											<th>Gender</th>
-											<th>Salary</th>
-											<th>Email</th>
-											<th>Phone No.</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-										{{#each doctors}}
-                                            <td>{{doctors.firstname}}</td>
-                                            <td>{{doctors.lastname}}</td>
-                                            <td>{{doctors.ssn}}</td>
-											<td>{{doctors.gender}}</td>
-											<td>{{doctors.salary}}</td>
-											<td>{{doctors.email}}</td>
-											<td>{{doctors.phone_number}}</td>
-										{{/each}}
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <div class="col-md-6">
+                        <h3 class="mb-4">We promised to take care our patients and we delivered.</h3>
+                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
                     </div>
                 </div>
             </div>
@@ -144,9 +124,8 @@
                         <div class="ftco-footer-widget mb-5 ml-md-4">
                             <h2 class="ftco-heading-2">Links</h2>
                             <ul class="list-unstyled">
-                                <li><a href="index.html"><span class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
-                                <li><a href="about.html"><span class="ion-ios-arrow-round-forward mr-2"></span>About</a></li>
-                                <li><a href="contact.html"><span class="ion-ios-arrow-round-forward mr-2"></span>Contact Us</a></li>
+								<li class="nav-item"><a href="\ICU_Front_End\Managers\Engineers\Equipments\equipment.html" class="nav-link">Equipments</a></li>
+								<li class="nav-item"><a href="\ICU_Front_End\Managers\Engineers\Rooms\room.html" class="nav-link">Rooms</a></li>
                             </ul>
                         </div>
                     </div>
@@ -188,6 +167,6 @@
         <script src="\ICU_Front_End\js\jquery.timepicker.min.js"></script>
         <script src="\ICU_Front_End\js\scrollax.min.js"></script>
         <script src="\ICU_Front_End\js\google-map.js"></script>
-        <script src="\ICU_Front_End\js\main.js"></script>    
+        <script src="\ICU_Front_End\js\main.js"></script>   
     </body>
 </html>

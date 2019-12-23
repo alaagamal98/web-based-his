@@ -70,57 +70,61 @@
             <div class="container">
                 <div class="row no-gutters slider-text align-items-center justify-content-center">
                     <div class="col-md-9 ftco-animate text-center">
-                        <h1 class="mb-2 bread">Doctors' Details</h1>
-                        <p class="breadcrumbs"><span class="mr-2"><a href="\ICU_Front_End\Managers\manager_page.html">Manager's Page <i class="ion-ios-arrow-forward"></i></a></span> <span>View Doctors <i class="ion-ios-arrow-forward"></i></span></p>
+                        <h1 class="mb-2 bread">New Equipments</h1>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="\ICU_Front_End\Managers\manager_page.html">Manager's Page <i class="ion-ios-arrow-forward"></i></a></span> <span>Add Equipments <i class="ion-ios-arrow-forward"></i></span></p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="tabs" class="project-tab">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <nav>
-                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Doctors' Data</a>
-                            </div>
-                        </nav>
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <table class="table" cellspacing="0">
-                                    <thead>
-                                        <tr>
-											<th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>SSN</th>
-											<th>Gender</th>
-											<th>Salary</th>
-											<th>Email</th>
-											<th>Phone No.</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-										{{#each doctors}}
-                                            <td>{{doctors.firstname}}</td>
-                                            <td>{{doctors.lastname}}</td>
-                                            <td>{{doctors.ssn}}</td>
-											<td>{{doctors.gender}}</td>
-											<td>{{doctors.salary}}</td>
-											<td>{{doctors.email}}</td>
-											<td>{{doctors.phone_number}}</td>
-										{{/each}}
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+        <section class="ftco-section">
+            <form style="margin: 0 auto; width:700px;" enctype="multipart/form-data" method="post" action="">
+                <fieldset>
+                    <legend>Add New Equipment</legend>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">First Name</label>
+                            <input type="text" class="form-control" id="inputEmail4" placeholder="Enter your first name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Last Name</label>
+                            <input type="text" class="form-control" id="inputEmail4" placeholder="Enter your last name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Password</label>
+                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
                         </div>
                     </div>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Address</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress2">Address 2</label>
+                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputCity">City</label>
+                            <input type="text" class="form-control" id="inputCity">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputState">State</label>
+                            <select id="inputState" class="form-control">
+                                <option selected>Choose...</option>
+                                <option>...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="inputZip">Zip</label>
+                            <input type="text" class="form-control" id="inputZip">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </fieldset>
+            </form>
         </section>
-		
+
         <footer class="ftco-footer ftco-bg-dark ftco-section">
             <div class="container">
                 <div class="row mb-5">
