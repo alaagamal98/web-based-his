@@ -23,44 +23,46 @@ router.post('/acess', async (req, res) => {
 
   if (!manger && !doctor && !nurse && !eng && !patient) return res.status(400).send('Invalid email or password.');
  
-	if (!nurse&& !doctor && manger && !eng && !patient){
+	if (manger){
 
     const validPassword = await bcrypt.compare(req.body.password, manger.password);
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
-  const token = manger.generateAuthToken();
-  res.render("ICU_Front_End\Managers\manager_page.html");
+ // const token = manger.generateAuthToken();
+  res.render("../ICU_Front_End\Managers\manager_page.html");
+  //res.send(manger);
+
   }
-  else if (!nurse&& doctor && !manger && !eng && !patient){
+  else if (doctor){
 
     const validPassword = await bcrypt.compare(req.body.password, doctor.password);
     if (!validPassword) return res.status(400).send('Invalid email or password.');
   //const token = doctor.generateAuthToken();
   res.send(doctor);
   }
-  else if (nurse&& !doctor && !manger && !eng && !patient){
-
-
-  const validPassword = await bcrypt.compare(req.body.password, nurse.password);
-  if (!validPassword) return res.status(400).send('Invalid email or password.');
-
-  const token = nurse.generateAuthToken();
-  res.send(token);
-  }
-  else if (!nurse&& !doctor && !manger && eng && !patient){
+  else if (eng){
 
     const validPassword = await bcrypt.compare(req.body.password, eng.password);
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
-  const token = eng.generateAuthToken();
+  //const token = eng.generateAuthToken();
   res.send(token);
   }
-  else if (!nurse&& !doctor && !manger && !eng && patient){
+  else if (nurse){
+
+
+    const validPassword = await bcrypt.compare(req.body.password, nurse.password);
+    if (!validPassword) return res.status(400).send('Invalid email or password.');
+  
+   // const token = nurse.generateAuthToken();
+    res.send(token);
+    }
+  else if (patient){
 
     const validPassword = await bcrypt.compare(req.body.password, patient.password);
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
-  const token = patient.generateAuthToken();
+ // const token = patient.generateAuthToken();
   res.send(token);
   }
   
