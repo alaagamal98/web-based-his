@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const _ = require('lodash');
+const bcrypt = require('bcryptjs');
 const {Eng} = require('../models/eng.js'); 
 const {Manger} = require('../models/manger.js');
 const {Nurse} = require('../models/nurse');
@@ -26,13 +27,13 @@ router.post('/', async (req, res) => {
     const validPassword = await bcrypt.compare(req.body.password, manger.password);
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
-  const token = manger.generateAuthToken();
-  res.render("ICU_Front_End\Managers\manager_page.html");
+ // const token = manger.generateAuthToken();
+  res.send(manger);
   }
   else if (doctor){
 
-    const validPassword = await bcrypt.compare(req.body.password, doctor.password);
-    if (!validPassword) return res.status(400).send('Invalid email or password.');
+    //const validPassword = await bcrypt.compare(req.body.password, doctor.password);
+    if (doctor.password!=req.body.password) return res.status(400).send('Invalid email or password.');
   //const token = doctor.generateAuthToken();
   res.send(doctor);
   }
@@ -42,24 +43,24 @@ router.post('/', async (req, res) => {
   const validPassword = await bcrypt.compare(req.body.password, nurse.password);
   if (!validPassword) return res.status(400).send('Invalid email or password.');
 
-  const token = nurse.generateAuthToken();
-  res.send(token);
+ // const token = nurse.generateAuthToken();
+  res.send(nurse);
   }
   else if (eng){
 
     const validPassword = await bcrypt.compare(req.body.password, eng.password);
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
-  const token = eng.generateAuthToken();
-  res.send(token);
+  //const token = eng.generateAuthToken();
+  res.send(eng);
   }
   else if (patient){
 
     const validPassword = await bcrypt.compare(req.body.password, patient.password);
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
-  const token = patient.generateAuthToken();
-  res.send(token);
+ // const token = patient.generateAuthToken();
+  res.send(patient);
   }
   
 });

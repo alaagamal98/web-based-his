@@ -3,7 +3,7 @@ const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 const mongoose = require("mongoose");
 const express = require("express");
-
+const bcrypt = require('bcryptjs');
 const nurses = require("./routes/nurses");
 const equipments = require("./routes/equipments");
 const mangers = require("./routes/mangers");
