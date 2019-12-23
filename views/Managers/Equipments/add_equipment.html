@@ -72,14 +72,14 @@
                 <div class="row no-gutters slider-text align-items-center justify-content-center">
                     <div class="col-md-9 ftco-animate text-center">
                         <h1 class="mb-2 bread">Equipments' Details</h1>
-                        <p class="breadcrumbs"><span class="mr-2"><a href="../manager_page.html">Manager's Page <i class="ion-ios-arrow-forward"></i></a></span> <span>Add Equipments <i class="ion-ios-arrow-forward"></i></span></p>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="../../manager_page.hbs">Manager's Page <i class="ion-ios-arrow-forward"></i></a></span> <span>Add Equipments <i class="ion-ios-arrow-forward"></i></span></p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="ftco-section">
-            <form style="margin: 0 auto; width:700px;" method="post" action="http://localhost:3000/api/">
+            <form style="margin: 0 auto; width:700px;" method="post" action="http://localhost:3000/api/equipments/add_equipment">
                 <fieldset>
                     <legend>Add New Equipment</legend>
                     <div class="form-row">
@@ -91,32 +91,28 @@
                             <label for="inputEmail4">Code</label>
                             <input type="text" name="code" class="form-control" id="inputEmail4" placeholder="Enter your last name">
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPassword4">Password</label>
-                            <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password">
-                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputAddress">SSN</label>
-                        <input type="text" name="ssn" class="form-control" id="inputAddress" placeholder="Enter the 14 numbers ID">
+                        <label for="inputAddress">Maintanince Date</label>
+                        <input type="text" name="maintanince_date" class="form-control" id="inputAddress" placeholder="Enter the 14 numbers ID">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity">
+                            <label for="inputCity">Sterile Date</label>
+                            <input type="text" name="sterileDates" class="form-control" id="inputCity">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputCity">Sterile Operation</label>
+                            <input type="text" name="sterileOperation" class="form-control" id="inputCity">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputState">Status</label>
-                            <select id="inputState" class="form-control">
+                            <select name="status" id="inputState" class="form-control">
                                 <option selected>Choose...</option>
-                                <option>fixed</option>
-                                <option>not-fixed</option>
-                                <option>under examination</option>
+                                <option name="status">fixed</option>
+                                <option name="status">not-fixed</option>
+                                <option name="status">under examination</option>
                             </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="inputZip">Zip</label>
-                            <input type="text" class="form-control" id="inputZip">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
