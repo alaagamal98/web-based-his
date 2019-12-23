@@ -17,7 +17,9 @@ const rooms = require("./routes/rooms");
 const feedbacks = require("./routes/feedbacks");
  const login = require("./routes/login");
 const app = express();
-
+const engines = require('consolidate');
+app.engine('html', engines.mustache);
+app.set('view engine', 'html');
 
 //  if (!config.get('jwtprivatekey')){
 //    console.error('fatal error: jwtprivatekey is not defined ');
