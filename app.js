@@ -5,7 +5,9 @@ Joi.objectId = require("joi-objectid")(Joi);
 const _ = require("lodash");
 const mongoose = require("mongoose");
 const express = require("express");
+const bodyParser = require("body-parser");
 const bcrypt = require('bcryptjs');
+// const engines = require('consolidate');
 const nurses = require("./routes/nurses");
 const equipments = require("./routes/equipments");
 const mangers = require("./routes/mangers");
@@ -17,7 +19,9 @@ const rooms = require("./routes/rooms");
 const feedbacks = require("./routes/feedbacks");
  const login = require("./routes/login");
 const app = express();
-
+const engines = require('consolidate');
+app.engine('html', engines.mustache);
+app.set('view engine', 'html');
 
 //  if (!config.get('jwtprivatekey')){
 //    console.error('fatal error: jwtprivatekey is not defined ');

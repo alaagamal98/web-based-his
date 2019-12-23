@@ -19,7 +19,7 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:3000/api/doctors/
+POST http://localhost:3000/api/login/acess
 content-type: application/json
 
 {
