@@ -1,7 +1,6 @@
 //const config = require("config");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
-const bcrypt =  require("bcryptjs")
 //const jwt = require("jsonwebtoken")
 const _ = require("lodash");
 const mongoose = require("mongoose");
