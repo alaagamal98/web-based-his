@@ -37,7 +37,7 @@ router.post('/acess', async (req, res) => {
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
  // const token = manger.generateAuthToken();
-  res.render("manager_page");
+  res.render("manager_page",{layout:false});
   //res.send(manger);
 
   }
@@ -46,17 +46,16 @@ router.post('/acess', async (req, res) => {
     const validPassword = await bcrypt.compare(req.body.password, doctor.password);
     if (!validPassword) return res.status(400).send('Invalid email or password.');
   //const token = doctor.generateAuthToken();
-  res.render("..\ICU_Front_End\Managers\Doctors\doc_page.html");
+  res.render("doc_page",{layout:false});
 
   //res.send(doctor);
   }
   else if (eng){
-
     const validPassword = await bcrypt.compare(req.body.password, eng.password);
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
   //const token = eng.generateAuthToken();
-  res.render("..\ICU_Front_End\Managers\Patients\pat_page.html");
+  res.render("pat_page",{layout:false});
 
   //res.send(token);
   }
@@ -67,7 +66,7 @@ router.post('/acess', async (req, res) => {
     if (!validPassword) return res.status(400).send('Invalid email or password.');
   
    // const token = nurse.generateAuthToken();
-   res.render("..\ICU_Front_End\Managers\Nurses\nur_page.html");
+   res.render("nur_page",{layout:false});
 
     //res.send(token);
     }
@@ -77,7 +76,7 @@ router.post('/acess', async (req, res) => {
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
  // const token = patient.generateAuthToken();
- res.render("..\ICU_Front_End\Managers\Engineers\eng_page.html");
+ res.render("eng_page",{layout:false});
 
   //res.send(token);
   }

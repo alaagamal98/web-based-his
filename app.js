@@ -6,10 +6,12 @@ const _ = require("lodash");
 const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require('path');
 const bcrypt = require('bcryptjs');
 // const engines = require('consolidate');
 const nurses = require("./routes/nurses");
 const equipments = require("./routes/equipments");
+const exphbs = require('express-handlebars')
 const mangers = require("./routes/mangers");
 const engs = require("./routes/engs");
 const doctors = require("./routes/doctors");
@@ -17,11 +19,14 @@ const patients = require("./routes/patients");
 const medicines = require("./routes/medicines");
 const rooms = require("./routes/rooms");
 const feedbacks = require("./routes/feedbacks");
- const login = require("./routes/login");
+const login = require("./routes/login");
 const app = express();
+app.engine('.hbs',exphbs({layout:false,extname:'.hbs'}));
+app.set('view engine','.hbs');
+app.set("views", "views");
 // app.engine('html',engines.mustache);
 // app.set('view engine','html');
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 //  if (!config.get('jwtprivatekey')){
 //    console.error('fatal error: jwtprivatekey is not defined ');
