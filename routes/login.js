@@ -15,8 +15,8 @@ const router = express.Router();
  router.use(bodyParser.urlencoded({extended: false}));
 //  router.engine('html',engines.mustache);
 // router.set('view engine','html');
-// router.use(bodyParser.json());
-// router.use(express.static('public'));
+router.use(bodyParser.json());
+ router.use(express.static('public'));
 
 
 router.post('/acess', async (req, res) => {
@@ -37,7 +37,7 @@ router.post('/acess', async (req, res) => {
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
  // const token = manger.generateAuthToken();
-  res.render("../ICU_Front_End/Managers/manager_page.html");
+  res.render("manager_page");
   //res.send(manger);
 
   }
@@ -46,7 +46,7 @@ router.post('/acess', async (req, res) => {
     const validPassword = await bcrypt.compare(req.body.password, doctor.password);
     if (!validPassword) return res.status(400).send('Invalid email or password.');
   //const token = doctor.generateAuthToken();
-  res.render("..\ICU_Front_End\Managers\Doctores\doc_page.html");
+  res.render("..\ICU_Front_End\Managers\Doctors\doc_page.html");
 
   //res.send(doctor);
   }
