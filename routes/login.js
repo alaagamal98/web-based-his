@@ -9,11 +9,14 @@ const {Doctor} = require('../models/doctor');
 const {Patient} = require('../models/patient');
 const mongoose = require('mongoose');
 const express = require('express');
+// const engines = require('consolidate');
 const bodyParser = require('body-parser');
 const router = express.Router();
-router.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-app.use(express.static('public'));
+ router.use(bodyParser.urlencoded({extended: false}));
+//  router.engine('html',engines.mustache);
+// router.set('view engine','html');
+// router.use(bodyParser.json());
+// router.use(express.static('public'));
 
 
 router.post('/acess', async (req, res) => {
@@ -34,7 +37,7 @@ router.post('/acess', async (req, res) => {
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
  // const token = manger.generateAuthToken();
-  res.render("../ICU_Front_End/Managers/manager_page.html",{manger:manger});
+  res.render("../ICU_Front_End/Managers/manager_page.html");
   //res.send(manger);
 
   }
