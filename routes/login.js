@@ -12,11 +12,7 @@ const express = require('express');
 // const engines = require('consolidate');
 const bodyParser = require('body-parser');
 const router = express.Router();
- router.use(bodyParser.urlencoded({extended: false}));
-//  router.engine('html',engines.mustache);
-// router.set('view engine','html');
-router.use(bodyParser.json());
- router.use(express.static('public'));
+
 
 
 router.post('/acess', async (req, res) => {

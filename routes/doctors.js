@@ -36,7 +36,7 @@ const { error } = validateDoctor(req.body);
     doctor.password = await bcrypt.hash(doctor.password,salt);
     await doctor.save();
     const doctors = await Doctor.find({}) ;
-    res.render("eng_page",{layout:false ,doctors:doctors});
+    res.render("view_doctor",{layout:false ,doctors:doctors});
 
   }
  
