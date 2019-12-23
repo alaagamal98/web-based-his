@@ -35,7 +35,8 @@ const { error } = validateDoctor(req.body);
     const salt = await bcrypt.genSalt(10);
     doctor.password = await bcrypt.hash(doctor.password,salt);
     await doctor.save();
-    res.send(_.pick(doctor,['firstName','lastName','email','password'])); //ali berg3 ll user mn request
+    const doctors = await Doctor.find({}) ;
+    res.render("eng_page",{layout:false ,doctors:doctors});
 
   }
  
