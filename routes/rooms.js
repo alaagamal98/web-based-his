@@ -31,6 +31,28 @@ router.post("/add_room", async (req, res) => {
   }
 });
 
+
+
+router.put("/:id", async (req, res) => {
+  const { error } = validateRoom(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  const room = await Room.findByIdAndUpdate(
+    req.params.id,
+    {
+      room_number: req.body.room_number,
+    vacancyOfRoom: req.body.vacancyOfRoom,
+    numberOfEquipment:req.body.numberOfEquipment,
+    nameOfEquipment: req.body.nameOfEquipment
+    },
+    { new: true }
+  );
+
+  if (!room)
+    return res.status(404).send("The room with the given ID was not found.");
+
+  res.send(room);
+});
 //delete
 router.delete("/:id", async (req, res) => {
   const room = await Room.findByIdAndRemove(req.params.id);

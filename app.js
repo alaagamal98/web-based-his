@@ -5,6 +5,7 @@ Joi.objectId = require("joi-objectid")(Joi);
 const _ = require("lodash");
 const mongoose = require("mongoose");
 const express = require("express");
+const bodyParser = require("body-parser");
 const bcrypt = require('bcryptjs');
 const nurses = require("./routes/nurses");
 const equipments = require("./routes/equipments");

@@ -20,7 +20,7 @@ router.post("/add_feedback", async (req, res) => {
 router.get("/", async (req, res) => {
   const feedbacks = await Feedback.find({});
  // res.render("frontend page", { feedbacks: feedbacks });
-  res.send(doctors);
+  res.send(feedbacks);
 });
 
 router.get("/:id", async (req, res) => {
