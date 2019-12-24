@@ -9,6 +9,8 @@ const bodyParser = require("body-parser");
 const path = require('path');
 const bcrypt = require('bcryptjs');
 var cookieParser = require('cookie-parser');
+const session = require('express-session');
+
 
 // const engines = require('consolidate');
 const nurses = require("./routes/nurses");
@@ -43,7 +45,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 // in terminal set doctor_jwtprivatekey = my securekey
 // a run b3d kda
 
-
+app.use(session({secret: 'ssshhhhh'}));
 // Database connection
 mongoose
   .connect("mongodb://localhost/icu")

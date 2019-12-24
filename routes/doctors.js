@@ -87,10 +87,23 @@ router.get("/",async (req, res) => {
   res.render("view_doctor",{layout:false ,doctors:doctors});
 });
 
-router.get("/:id",async (req, res) => {
+// router.get('/admin',(req,res) => {
+//   sess = req.session;
+//   if(sess.email) {
+//       res.write(`<h1>Hello ${sess.email} </h1><br>`);
+//       res.end('<a href='+'/logout'+'>Logout</a>');
+//   }
+//   else {
+//       res.write('<h1>Please login first.</h1>');
+//       res.end('<a href='+'/'+'>Login</a>');
+//   }
+// });
+
+router.get("/user",async (req, res) => {
   const doctor = await Doctor.findById(req.params.id);
   if (!doctor) return res.status(404).send("The doctor with the given ID was not found.");
-  res.send(doctor);
+  sess = req.session;
+  res.render("view_doc_profile",{layout:false ,doctor:sess});
 });
 
   

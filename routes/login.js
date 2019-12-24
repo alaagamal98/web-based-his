@@ -72,6 +72,8 @@ router.post('/acess', async (req, res) => {
     if (!validPassword) return res.status(400).send('Invalid email or password.');
 
  // const token = patient.generateAuthToken();
+ sess = req.session;
+ sess.email = req.body.email;
  res.render("pat_page",{layout:false});
 
   //res.send(token);
