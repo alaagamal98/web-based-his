@@ -26,7 +26,7 @@
             <div class="container">
                 <div class="row no-gutters d-flex align-items-start align-items-center px-3 px-md-0">
                     <div class="col-md-4 order-md-2 mb-2 mb-md-0 align-items-center text-center">
-                        <a class="navbar-brand" href="../../Home/home.html">ICU<span>Intensive Care Unit</span></a>
+                        <a class="navbar-brand" href="../../../Home/home.html">ICU<span>Intensive Care Unit</span></a>
                     </div>
                     <div class="col-md-4 order-md-1 d-flex topper mb-md-0 mb-2 align-items-center text-md-right">
                         <div class="icon d-flex justify-content-center align-items-center order-md-last">
@@ -58,34 +58,23 @@
                         <li class="nav-item"><a href="../Nurses/nurse.html" class="nav-link">Nurses</a></li>
                         <li class="nav-item"><a href="../Patients/patient.html" class="nav-link">Patients</a></li>
                         <li class="nav-item"><a href="../Mediciens/medicine.html" class="nav-link">Mediciens</a></li>
-                        <li class="nav-item"><a href="../Rooms/room.html" class="nav-link">Rooms</a></li>
+                        <li class="nav-item"><a href="../Profile/profile.html" class="nav-link">My Profile</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     
-        <section class="hero-wrap hero-wrap-2" style="background-image: url(../../images/medicine.jpg);" data-stellar-background-ratio="0.5">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row no-gutters slider-text align-items-center justify-content-center">
-                    <div class="col-md-9 ftco-animate text-center">
-                        <h1 class="mb-2 bread">Mediciens' Details</h1>
-                        <p class="breadcrumbs"><span class="mr-2"><a href="../doc_page.html">Doctor's Page <i class="ion-ios-arrow-forward"></i></a></span> <span>Mediciens <i class="ion-ios-arrow-forward"></i></span></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section class="ftco-section">
+            <form action="http://localhost:3000/api/profiles/" method="get">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row no-gutters slider-text align-items-center justify-content-center">
                     <div class="col-md-9 ftco-animate text-center">
-                        <a href="add_medicine.html"><h1 class="mb-2 bread"><button type="button" class="btn btn-primary">Add new medicine</button></h1></a>
-                        <a href="view_medicine.html"><h1 class="mb-2 bread"><button type="button" class="btn btn-primary">View your medicines</button></h1></a>
+                        <button type="submit" type="button" class="mb-2 bread btn btn-primary">View your profile</button>
                     </div>
                 </div>
             </div>
+            </form>
         </section>
 		
         <footer class="ftco-footer ftco-bg-dark ftco-section">
@@ -111,10 +100,10 @@
                         <div class="ftco-footer-widget mb-5 ml-md-4">
                             <h2 class="ftco-heading-2">Links</h2>
                             <ul class="list-unstyled">
-								<li class="nav-item"><a href="../Nurses/nurse.html" class="nav-link">Nurses</a></li>
-								<li class="nav-item"><a href="../Patients/patient.html" class="nav-link">Patients</a></li>
+                                <li class="nav-item"><a href="../Nurses/nurse.html" class="nav-link">Nurses</a></li>
+                                <li class="nav-item"><a href="../Patients/patient.html" class="nav-link">Patients</a></li>
                                 <li class="nav-item"><a href="../Mediciens/medicine.html" class="nav-link">Mediciens</a></li>
-                                <li class="nav-item"><a href="../Rooms/room.html" class="nav-link">Rooms</a></li>
+                                <li class="nav-item"><a href="../Profile/profile.html" class="nav-link">My Profile</a></li>
                             </ul>
                         </div>
                     </div>
@@ -134,25 +123,27 @@
             </div>
         </footer>
 
+<!--
         <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg>
         </div>
+-->
     
         <!-- Loading JavaScript Files -->
-        <script src="../../../js/jquery.min.js"></script>
-        <script src="../../../js/jquery-migrate-3.0.1.min.js"></script>
-        <script src="../../../js/popper.min.js"></script>
-        <script src="../../../js/bootstrap.min.js"></script>
-        <script src="../../../js/jquery.easing.1.3.js"></script>
-        <script src="../../../js/jquery.waypoints.min.js"></script>
-        <script src="../../../js/jquery.stellar.min.js"></script>
-        <script src="../../../js/owl.carousel.min.js"></script>
-        <script src="../../../js/jquery.magnific-popup.min.js"></script>
-        <script src="../../../js/aos.js"></script>
-        <script src="../../../js/jquery.animateNumber.min.js"></script>
-        <script src="../../../js/bootstrap-datepicker.js"></script>
-        <script src="../../../js/jquery.timepicker.min.js"></script>
-        <script src="../../../js/scrollax.min.js"></script>
-        <script src="../../../js/google-map.js"></script>
-        <script src="../../../js/main.js"></script>   
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/jquery-migrate-3.0.1.min.js"></script>
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/jquery.easing.1.3.js"></script>
+        <script src="/js/jquery.waypoints.min.js"></script>
+        <script src="/js/jquery.stellar.min.js"></script>
+        <script src="/js/owl.carousel.min.js"></script>
+        <script src="/js/jquery.magnific-popup.min.js"></script>
+        <script src="/js/aos.js"></script>
+        <script src="/js/jquery.animateNumber.min.js"></script>
+        <script src="/js/bootstrap-datepicker.js"></script>
+        <script src="/js/jquery.timepicker.min.js"></script>
+        <script src="/js/scrollax.min.js"></script>
+        <script src="/js/google-map.js"></script>
+        <script src="/js/main.js"></script>   
     </body>
 </html>
