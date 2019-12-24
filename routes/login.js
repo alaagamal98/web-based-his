@@ -12,6 +12,9 @@ const express = require('express');
 // const engines = require('consolidate');
 const bodyParser = require('body-parser');
 const router = express.Router();
+const session = require('express-session');
+app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
+
 
 
 

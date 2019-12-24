@@ -45,7 +45,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 // in terminal set doctor_jwtprivatekey = my securekey
 // a run b3d kda
 
-app.use(session({secret: 'ssshhhhh'}));
+aapp.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
 // Database connection
 mongoose
   .connect("mongodb://localhost/icu")
