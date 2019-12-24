@@ -100,8 +100,8 @@ router.get("/",async (req, res) => {
 // });
 
 router.get("/user",async (req, res) => {
-  const doctor = await Doctor.findById(req.params.id);
-  if (!doctor) return res.status(404).send("The doctor with the given ID was not found.");
+  // const doctor = await Doctor.findById(req.params.id);
+  // if (!doctor) return res.status(404).send("The doctor with the given ID was not found.");
   sess = req.session;
   res.render("view_doc_profile",{layout:false ,doctor:sess});
 });
