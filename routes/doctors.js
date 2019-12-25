@@ -6,6 +6,9 @@ const mongoose = require("mongoose");
 const bcrypt =  require("bcryptjs")
 //const jwt = require("jsonwebtoken")
 const _ = require("lodash");
+const session = require('express-session');
+
+
 const { Doctor, validateDoctor } = require("../models/doctor");
 
 //create doctor
@@ -103,8 +106,14 @@ router.get("/user",async (req, res) => {
   // const doctor = await Doctor.findById(req.params.id);
   // if (!doctor) return res.status(404).send("The doctor with the given ID was not found.");
   sess = req.session;
-  res.render("view_doc_profile",{layout:false ,doctor:sess});
+  res.render("view_doc_profile",{layout:false ,sess:sess});
 });
+
+// router.get("/doctor/edit/:ssn",async (req, res) => {
+// let ssn = req.params.ssn;
+// const doctors = await Doctor.find({ssn:ssn}) ;
+//   res.render("view_doc_profile",{layout:false ,doctor:doctor});
+// });
 
   
   module.exports = router;

@@ -8,6 +8,7 @@ const { Patient, validate } = require("../models/patient");
 // routes
 
 // Add patient
+// Add patient
 router.post("/add_patient", async (req, res) => {
   // Validate The Request
   const { error } = validate(req.body);
@@ -20,27 +21,29 @@ router.post("/add_patient", async (req, res) => {
     return res.status(400).send("That patient already exisits!");
   } else {
     // Insert the new patient if they do not exist yet
-    patient = new Patient(
-      _.pick(req.body, [
-        "ssn",
-        "firstName",
-        "lastName",
-        "email",
-        "gender",
-        "Dep_phone_number",
-        "password",
-        "history",
-        "entryDate"
-            ])
-    );
+    
+     patient = new Patient({
+      ssn :  req.body.ssn,
+     firstName : req.body.firstName ,
+     lastName :  req.body.lastName,
+     email :  req.body.email,
+     gender : req.body.gender,
+     Dep_phone_number : req.body.Dep_phone_number,
+     password : req.body.password,
+     history : req.body.history,
+     entryDate :  req.body.entryDate,
+     imageUrl: req.file,
+     //imageUrl : imageUrl
+     });
+     
+    }
     const salt = await bcrypt.genSalt(10);
     patient.password = await bcrypt.hash(patient.password, salt);
     await patient.save();
     const patients = await Patient.find({}) ;
     res.render("view_patient",{layout:false ,patients:patients});
-    }
+    
 });
-
 // Assign patient to a doctor
 router.post("/assign_patient/:id", async (req, res) => {
   let patient = await Patient.findById(req.params.id);

@@ -10,6 +10,7 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 var cookieParser = require('cookie-parser');
 const session = require('express-session');
+const multer = require ('multer');
 
 
 // const engines = require('consolidate');
@@ -45,7 +46,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 // in terminal set doctor_jwtprivatekey = my securekey
 // a run b3d kda
 
-aapp.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
+app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
 // Database connection
 mongoose
   .connect("mongodb://localhost/icu")
@@ -64,6 +65,27 @@ app.use("/api/doctors", doctors);
 app.use("/api/medicines", medicines);
 app.use("/api/feedbacks", feedbacks);
  app.use("/api/login", login);
+
+//upload:
+const filestorage = multer.diskStorage({
+  destination:(req,file, cb)=>{
+    cb(null,'images');
+  },
+  filename:(req,file,cb)=> {
+    cb(null, '-' + file.originalname);
+    //new Date().toISOString()
+  }
+})
+const filefilter = (req,file,cb)=> {
+  if(file.mimetype=== 'image/png'|| file.mimetype=== 'image/jpg' || file.mimetype=== 'image/jpeg')
+  { 
+    cb(null,true);
+  }else{
+    console.log("Wrong image type");
+    cb(null,false);
+  }
+}
+app.use(multer({dest: 'images', storage: filestorage,fileFilter:filefilter}).single('image'));
 
 
 const port = process.env.PORT || 3000;

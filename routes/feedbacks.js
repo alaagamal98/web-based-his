@@ -14,7 +14,7 @@ router.post("/add_feedback", async (req, res) => {
     _.pick(req.body, ["name", "email", "subject", "message"])
   );
   await feedback.save();
-  res.send(feedback);
+  res.render("manager_page",{layout:false});
 });
 
 router.get("/", async (req, res) => {

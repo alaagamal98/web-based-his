@@ -57,7 +57,9 @@ const patientSchema = new mongoose.Schema({
   exitDate: {
     type: Date
     },
-
+image:{
+  type:String
+},
   Medicine: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Medicine",
@@ -149,6 +151,7 @@ function validatePatient(patient) {
       .max(1024),
     history: Joi.string().required(),
     entryDate: Joi.date().required(),
+    image:Joi.string()
   });
 
   return Joi.validate(patient, schema);
